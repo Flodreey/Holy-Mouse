@@ -1,1 +1,5 @@
 .vsconfig
+
+Library/
+Logs/
+UserSettings/
