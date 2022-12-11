@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     {
         handleMovement();
         handleRotation();
+
+        Debug.Log(onGround);
     }
 
     void handleMovement()
