@@ -1,67 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[RequireComponent(typeof(Rigidbody))]
+using UnityEngine.EventSystems;
 
 public class MouseMovement : MonoBehaviour
 {
-    // move speed of the player
-    [SerializeField] float speed = 1f;
-    [SerializeField] float maxSpeed = 5f;
+    [SerializeField] float speed = 10f;
+    [SerializeField] float jumpHeight = 0.5f;
+    [SerializeField] float gravity = 2f;
 
-    // the height the player can jump
-    [SerializeField] float jumpHeight = 5f;
+    private Vector3 moveDirection;
 
     // How fast the player turns to face movement direction
     [SerializeField] float turnSmoothTime = 0.1f;
     // not really used, needed for SmoothDampAngle(...)
     float turnSmoothVelocity;
 
-    Rigidbody rigidbody;
+    CharacterController controller;
     GameObject mainCamera;
+    Animator animator;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        animator = GetComponentInChildren<Animator>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        Vector2 inputDirection = new Vector3(h, v).normalized;
+        bool groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && moveDirection.y < 0)
+        {
+            moveDirection.y = 0f;
+        }
 
-        if (inputDirection.magnitude >= 0.1f)
+        // user input
+        Vector2 inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        Vector3 move = new Vector3();
+        if (inputDirection.magnitude > 0.1)
         {
             // calculating player angle around y, which depends on inputs and on the rotation of the camera
             float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
+
             // smoothes the rotation when player turns
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+            // calculating direction in which player looks depending on the current rotation angle
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            // calculating direction in which player looks
-            Vector3 direction = Quaternion.Euler(0.0f, angle, 0.0f) * Vector3.forward;
-
-            rigidbody.AddForce(direction.normalized * speed);
+            move = Quaternion.Euler(0.0f, angle, 0.0f) * Vector3.forward;
         }
 
-        // player can only jump if he is on the ground
-        if (Input.GetButton("Jump") && isOnGround())
+        controller.Move(move * Time.deltaTime * speed);
+
+        // Changes the height position of the player..
+        if (Input.GetButtonDown("Jump") && groundedPlayer)
         {
-            rigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            moveDirection.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
 
-        // limiting the player velocity to maxSpeed
-        if (rigidbody.velocity.magnitude > maxSpeed)
-        {
-            rigidbody.velocity = rigidbody.velocity.normalized * maxSpeed;
-        }
-    }
+        moveDirection.y += gravity * Time.deltaTime;
+        controller.Move(moveDirection * Time.deltaTime);
 
-    bool isOnGround()
-    {
-        return Physics.Raycast(transform.position, Vector3.down, 0.05f);
+        // animation
+        animator.SetBool("IsWalking", inputDirection.x != 0 || inputDirection.y != 0);
     }
 }
