@@ -8,13 +8,19 @@ public class MouseMovement : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] float jumpHeight = 0.5f;
     [SerializeField] float gravity = 2f;
+    [SerializeField] float tetherSnapDistance = .2f;
 
     private Vector3 moveDirection;
+    private bool tethered = false;
+    private Tether tether;
+    private bool justJumped = false;
 
     // How fast the player turns to face movement direction
     [SerializeField] float turnSmoothTime = 0.1f;
     // not really used, needed for SmoothDampAngle(...)
     float turnSmoothVelocity;
+
+    [SerializeField] GameObject playerVisual;
 
     CharacterController controller;
     GameObject mainCamera;
@@ -28,6 +34,17 @@ public class MouseMovement : MonoBehaviour
     }
 
     void Update()
+    {
+        if (tethered)
+        {
+            moveTethered();
+        } else
+        {
+            moveFreely();
+        }
+    }
+
+    void moveFreely()
     {
         bool groundedPlayer = controller.isGrounded;
         if (groundedPlayer && moveDirection.y < 0)
@@ -43,28 +60,67 @@ public class MouseMovement : MonoBehaviour
         {
             // calculating player angle around y, which depends on inputs and on the rotation of the camera
             float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
-
+            
             // smoothes the rotation when player turns
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            float visualAngle = Mathf.SmoothDampAngle(playerVisual.transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
             // calculating direction in which player looks depending on the current rotation angle
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
 
-            move = Quaternion.Euler(0.0f, angle, 0.0f) * Vector3.forward;
+            playerVisual.transform.rotation = Quaternion.Euler(0f, visualAngle, 0f);
+
+            move = Quaternion.Euler(0.0f, targetAngle, 0.0f) * Vector3.forward;
         }
 
         controller.Move(move * Time.deltaTime * speed);
 
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        if (!justJumped && Input.GetButtonDown("Jump") && groundedPlayer)
         {
+            justJumped = true;
             moveDirection.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            
+
+            float tetherDist = Mathf.Infinity;
+            Tether closest = null;
+            foreach(Tether tether in Global.instance.GetTethers())
+            {
+                float dist = Vector3.Distance(tether.GetClosestPoint(transform.position),transform.position);
+                if (dist < tetherDist)
+                {
+                    tetherDist = dist;
+                    closest = tether;
+                }
+            }
+            
+            if(tetherDist < tetherSnapDistance)
+            {
+                tether = closest;
+                tethered = true;
+
+                moveTethered();
+                return;
+            }
         }
+        justJumped = false;
 
         moveDirection.y += gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
 
         // animation
         animator.SetBool("IsWalking", inputDirection.x != 0 || inputDirection.y != 0);
+    }
+
+    void moveTethered()
+    {
+        if (!justJumped && Input.GetButtonDown("Jump"))
+        {
+            justJumped = true;
+            tether = null;
+            tethered = false;
+            moveFreely();
+            return;
+        }
+        justJumped = false;
     }
 }
