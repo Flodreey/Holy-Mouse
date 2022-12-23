@@ -20,9 +20,10 @@ public class Global : MonoBehaviour
         }
     }
 
-    public void RegisterTether(Tether tether)
+    public int RegisterTether(Tether tether)
     {
         tethers.Add(tether);
+        return tethers.Count - 1;
     }
 
     public List<Tether> GetTethers()

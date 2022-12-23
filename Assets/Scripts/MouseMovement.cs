@@ -75,17 +75,23 @@ public class MouseMovement : MonoBehaviour
         controller.Move(move * Time.deltaTime * speed);
 
         // Changes the height position of the player..
-        if (!justJumped && Input.GetButtonDown("Jump") && groundedPlayer)
+        if (!justJumped && Input.GetButtonDown("Jump"))
         {
             justJumped = true;
-            moveDirection.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            if (groundedPlayer)
+            {
+                moveDirection.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            }
             
 
             float tetherDist = Mathf.Infinity;
+            Vector3 closestPoint = transform.position + new Vector3(0, 1000, 0);
+            Vector3 dir;
             Tether closest = null;
             foreach(Tether tether in Global.instance.GetTethers())
             {
-                float dist = Vector3.Distance(tether.GetClosestPoint(transform.position),transform.position);
+                closestPoint = tether.GetClosestPoint(transform.position, out dir);
+                float dist = Vector3.Distance(closestPoint, transform.position);
                 if (dist < tetherDist)
                 {
                     tetherDist = dist;
@@ -97,6 +103,8 @@ public class MouseMovement : MonoBehaviour
             {
                 tether = closest;
                 tethered = true;
+
+                transform.position = closestPoint;
 
                 moveTethered();
                 return;
@@ -118,9 +126,32 @@ public class MouseMovement : MonoBehaviour
             justJumped = true;
             tether = null;
             tethered = false;
+            moveDirection.y += Mathf.Sqrt(jumpHeight * -0.5f * gravity);
             moveFreely();
             return;
         }
         justJumped = false;
+
+        float movementInput = Input.GetAxis("Vertical");
+        if (Mathf.Abs(movementInput) > 0.1f)
+        {
+            Vector3 lineDir;
+            Vector3 closestPoint = tether.GetClosestPoint(transform.position, out lineDir);
+            Vector3 cameraDir = mainCamera.transform.forward;
+
+            Vector3 dir = lineDir * (Vector3.Dot(lineDir, cameraDir) > 0 ? 1 : -1);
+
+            transform.position += movementInput * dir * speed * Time.deltaTime;
+            transform.position = tether.GetClosestPoint(transform.position, out lineDir);
+
+            // Visual stuff
+            playerVisual.transform.LookAt(transform.position + dir);
+
+            float downDiff = Vector3.Dot(-playerVisual.transform.up, tether.mouseDown);
+            playerVisual.transform.Rotate(playerVisual.transform.forward, -downDiff * Mathf.PI, Space.World);
+        }
+
+        // animation
+        animator.SetBool("IsWalking", Mathf.Abs(movementInput) > 0.1f);
     }
 }

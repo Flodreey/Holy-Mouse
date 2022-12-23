@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Tether : MonoBehaviour
 {
+    public Vector3 mouseDown = new Vector3( 0, 0, 1 );
+    public int id;
+
     private LineRenderer line;
     private Vector3[] points;
     
@@ -13,16 +16,17 @@ public class Tether : MonoBehaviour
         points = new Vector3[line.positionCount];
         line.GetPositions(points);
         
-        Global.instance.RegisterTether(this);
+        id = Global.instance.RegisterTether(this);
     }
 
     /*
      * ASSUMPTION: line is mostly straight, does not curl up to the point where the closest two line segments are disjoint
      */
-    public Vector3 GetClosestPoint(Vector3 pos)
+    public Vector3 GetClosestPoint(Vector3 pos, out Vector3 segmentDirection)
     {
         pos -= transform.position;
         Vector3 output = pos;
+        segmentDirection = new Vector3();
         float closestDist = Mathf.Infinity;
         for(int i=1; i<points.Length; i++)
         {
@@ -41,6 +45,7 @@ public class Tether : MonoBehaviour
             {
                 output = projectedPoint;
                 closestDist = dist;
+                segmentDirection = AB.normalized;
             }
         }
         

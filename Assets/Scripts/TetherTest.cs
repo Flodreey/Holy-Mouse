@@ -9,6 +9,7 @@ public class TetherTest : MonoBehaviour
 
     void Update()
     {
-        projectedPoint.transform.position = tether.GetClosestPoint(transform.position);
+        Vector3 dir;
+        projectedPoint.transform.position = tether.GetClosestPoint(transform.position, out dir);
     }
 }
