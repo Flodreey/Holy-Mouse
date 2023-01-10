@@ -170,7 +170,7 @@ public class MouseMovement : MonoBehaviour
                 tether = closest;
                 tethered = true;
 
-                transform.position = closestPoint;
+                transform.position = tether.GetClosestPoint(transform.position, out dir);
 
                 moveTethered();
                 return;
@@ -192,10 +192,14 @@ public class MouseMovement : MonoBehaviour
             justJumped = true;
             tether = null;
             tethered = false;
-            moveDirection.y += Mathf.Sqrt(jumpHeight * -0.5f * gravity);
+            if (!controller.isGrounded)
+            {
+                moveDirection.y += Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+            }
             moveFreely();
             return;
         }
+        moveDirection = new Vector3();
         justJumped = false;
 
         float movementInput = Input.GetAxis("Vertical");
@@ -210,11 +214,31 @@ public class MouseMovement : MonoBehaviour
             transform.position += movementInput * dir * speed * Time.deltaTime;
             transform.position = tether.GetClosestPoint(transform.position, out lineDir);
 
+            if(tether.shouldDrop(transform.position, dir))
+            {
+                tether = null;
+                tethered = false;
+                moveFreely();
+                return;
+            }
+
             // Visual stuff
+            playerVisual.transform.rotation = new Quaternion();
             playerVisual.transform.LookAt(transform.position + dir);
 
-            float downDiff = Vector3.Dot(-playerVisual.transform.up, tether.mouseDown);
-            playerVisual.transform.Rotate(playerVisual.transform.forward, -downDiff * Mathf.PI, Space.World);
+            Vector3 mouseDownAdjusted = tether.mouseDown;
+            float scalar = Vector3.Dot(playerVisual.transform.forward, mouseDownAdjusted);
+            mouseDownAdjusted -= playerVisual.transform.forward * scalar;
+
+            float downDiff = Vector3.Dot(playerVisual.transform.right, mouseDownAdjusted.normalized);
+            playerVisual.transform.Rotate(playerVisual.transform.forward, downDiff * 90f, Space.World);
+
+            // Stupid edge case
+            float upDiff = Vector3.Dot(playerVisual.transform.up, mouseDownAdjusted);
+            if (upDiff > 0)
+            {
+                playerVisual.transform.Rotate(playerVisual.transform.forward, 180f, Space.World);
+            }
         }
 
         // animation
