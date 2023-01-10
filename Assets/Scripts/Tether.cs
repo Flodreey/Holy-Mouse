@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Tether : MonoBehaviour
 {
+    // Whether the player should drop off the tether automatically once they reach the start (point 0) or end (last point)
+    [SerializeField] bool dropAtStart = false;
+    [SerializeField] bool dropAtEnd = false;
     public Vector3 mouseDown = new Vector3( 0, 0, 1 );
     public int id;
 
     private LineRenderer line;
     private Vector3[] points;
+    private Vector3 start, end;
+    private float dropDistance = .01f;
     
     void Start()
     {
         line = GetComponent<LineRenderer>();
         points = new Vector3[line.positionCount];
         line.GetPositions(points);
+        start = transform.position + points[0];
+        end = transform.position + points[points.Length - 1];
         
         id = Global.instance.RegisterTether(this);
     }
@@ -50,6 +57,16 @@ public class Tether : MonoBehaviour
         }
         
         return output+transform.position;
+    }
+
+    public bool shouldDrop(Vector3 pos, Vector3 dir)
+    {
+        bool reachedStart = Vector3.Distance(pos, start) < dropDistance;
+        bool movingTowardsStart = Vector3.Dot(start - pos, dir) > 0;
+        bool reachedEnd = Vector3.Distance(pos, end) < dropDistance;
+        bool movingTowardsEnd = Vector3.Dot(end - pos, dir) > 0;
+
+        return (dropAtStart && reachedStart && movingTowardsStart) || (dropAtEnd && reachedEnd && movingTowardsEnd);
     }
 
 }
