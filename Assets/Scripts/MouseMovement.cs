@@ -13,7 +13,7 @@ public class MouseMovement : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] float jumpHeight = 0.5f;
     [SerializeField] float gravity = 2f;
-    [SerializeField] float tetherSnapDistance = .2f;
+    [SerializeField] float tetherSnapDistance = .3f;
 
     private Vector3 moveDirection;
     private bool tethered = false;
