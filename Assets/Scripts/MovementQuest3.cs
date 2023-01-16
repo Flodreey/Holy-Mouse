@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class MouseMovement : MonoBehaviour
+public class MovementQuest3 : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
     [SerializeField] float jumpHeight = 0.5f;
@@ -34,8 +34,9 @@ public class MouseMovement : MonoBehaviour
     public GameObject[] pinkCubes;
     private int count;
     [SerializeField] Text textField;
-    [SerializeField] int currentLevel;
+    private int currentLevel;
     [SerializeField] int totalElements;
+    [SerializeField] GameObject planArea;
 
     [SerializeField] GameObject pauseMenu;
 
@@ -46,8 +47,10 @@ public class MouseMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         pinkCubes = new GameObject[totalElements];
+        count=0;
+        currentLevel=3;
 
-        string name="ButtonCube";
+        string name="ColliderCube";
         for(int i=1;i<=totalElements;i++){
             pinkCubes[i-1] = GameObject.Find(name+i);
         }
@@ -68,7 +71,9 @@ public class MouseMovement : MonoBehaviour
     void Update()
     {
         if(Input.GetButtonDown("Interact")){
-            checkForInteraction();
+            if(count<totalElements){
+                checkForInteraction();  
+            }
         }
         if(Input.GetButtonDown("Cancel")){
             openPauseMenu();
@@ -85,29 +90,37 @@ public class MouseMovement : MonoBehaviour
         }
     }
     void handInQuest(){
-        if(count==totalElements){
-            SceneManager.LoadScene("Quest"+(currentLevel+1));
+        if(count==totalElements && planArea.GetComponent<BoxCollider>().bounds.Contains(playerVisual.transform.position)){
+            SceneManager.LoadScene("MainMenu");
         }
     }
     void openPauseMenu(){
         pauseMenu.SetActive(!pauseMenu.activeSelf);
     }
     void checkForInteraction(){
-        for(int i=0;i<totalElements;i++){
-            if(pinkCubes[i].activeSelf){
-                float distance = Vector3.Distance(playerVisual.transform.position, pinkCubes[i].transform.position);
-                if(distance<0.5){
-                    pinkCubes[i].SetActive(false);
-                    count++;
-                    if(currentLevel==1){
-                        Debug.Log("Gegenstand gefunden! Du hast jetzt "+count+" Gegenstände identifiziert");
-                        textField.text = count + " von "+totalElements+" Gegenständen gefunden.";
-                    }else{
-                        Debug.Log("Mangel identifiziert! Du hast jetzt "+count+" Mängel gefunden");
-                        textField.text = count + " von "+totalElements+" Mängel identifiziert.";
-                    }
+        if(pinkCubes[count].activeSelf){
+            BoxCollider areaCollider=pinkCubes[count].GetComponent<BoxCollider>();
+            if(areaCollider.bounds.Contains(playerVisual.transform.position)){
+                pinkCubes[count].SetActive(false);
+                count++;
+                Debug.Log("Raum erfolgreich identifiziert! Du hast jetzt "+count+" Räume identifiziert");
+                switch (count){
+                    case 1:
+                        textField.text = "Ein geeigneter Raum für ein Büro wird gesucht:\n- der Raum darf kein Sichtkontakt zum Kirchenraum haben\n- zudem sollte der Raum nicht besonders groß sein";
+                        break;
+                    case 2:
+                        textField.text = "Ein geeigneter Raum für die Turnhalle wird gesucht:\n- der Raum sollte nicht in dem großen Kirchenraum sein\n- zudem sollte er genug Platz bieten, damit die Kinder herumtoben können\n- Zielgröße ist eine kleiner Turnhalle";
+                        break;
+                    default:
+                        textField.text = "Du hast alle Räume erfolgreich zugewiesen!\n\nGehe nun zu dem im Kirchenraum ausliegenden Plan und bestätige deine Auswahl mit P.";
+                        break;
                 }
+            }else{
+                Debug.Log("Du befindest dich nicht im richtigen Raum.");
             }
+        }else{
+            Debug.Log("Weird! Der gesuchte Raum ist nicht active. Count Variable wird um 1 erhöht");
+            count++;
         }
     }
     void moveFreely()
