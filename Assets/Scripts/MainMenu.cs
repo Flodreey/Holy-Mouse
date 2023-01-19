@@ -32,6 +32,10 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene("Quest1");
         }
     }
+    public void NewGame(){
+        File.Delete("savedata.dat");
+        SceneManager.LoadScene("Quest1");
+    }
     public void QuitGame(){
         Debug.Log("QUIT!");
         Application.Quit();

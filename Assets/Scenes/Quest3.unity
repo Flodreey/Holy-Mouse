@@ -529,8 +529,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Aktuelle Aufgabe: Raumzuordnung\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1243,8 +1243,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter text...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1964,7 +1964,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &411279091
 GameObject:
@@ -3253,7 +3253,8 @@ GameObject:
   - component: {fileID: 654092775}
   - component: {fileID: 654092774}
   - component: {fileID: 654092773}
-  - component: {fileID: 654092772}
+  - component: {fileID: 654092777}
+  - component: {fileID: 654092776}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3261,29 +3262,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &654092772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654092771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c4c6b0fad3cdef4db76c4309bba0793, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1.2
-  jumpHeight: 0.5
-  gravity: -9.81
-  tetherSnapDistance: 0.5
-  turnSmoothTime: 0.2
-  playerVisual: {fileID: 1431519461}
-  pinkCubes: []
-  textField: {fileID: 573756735}
-  totalElements: 3
-  planArea: {fileID: 1011095830}
-  pauseMenu: {fileID: 845544216}
 --- !u!143 &654092773
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3332,6 +3310,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &654092776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654092771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f09c4bee7b514dc0b064d4e982fa84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.2
+  jumpHeight: 0.5
+  gravity: -9.81
+  tetherSnapDistance: 0.5
+  turnSmoothTime: 0.2
+  playerVisual: {fileID: 1431519461}
+--- !u!114 &654092777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654092771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ba3493e503f194d9565d8846cbef8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questPanel: {fileID: 1989493776}
+  playerVisual: {fileID: 1431519461}
+  pinkCubes: []
+  textField: {fileID: 573756735}
+  totalElements: 3
+  planArea: {fileID: 1011095830}
+  pauseMenu: {fileID: 845544216}
 --- !u!1001 &662313096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3795,6 +3810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84525d3271ad36c419e73c62a4bdae92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropAtStart: 0
+  dropAtEnd: 0
   mouseDown: {x: 0, y: -1, z: 0}
   id: 0
 --- !u!120 &721815372
@@ -4242,6 +4259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84525d3271ad36c419e73c62a4bdae92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropAtStart: 0
+  dropAtEnd: 0
   mouseDown: {x: -1, y: 0, z: 0}
   id: 0
 --- !u!4 &832758111
@@ -4355,7 +4374,7 @@ RectTransform:
   - {fileID: 238228613}
   - {fileID: 353693666}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5992,7 +6011,7 @@ GameObject:
   - component: {fileID: 1011095832}
   m_Layer: 3
   m_Name: AreaPlan
-  m_TagString: Untagged
+  m_TagString: FinishArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10946,8 +10965,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter text...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11156,51 +11175,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1506589144}
   m_CullTransparentMesh: 1
---- !u!1 &1508542704
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1508542706}
-  - component: {fileID: 1508542705}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1508542705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508542704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d6488b0fc41ba4ca7b5ac0a25a9fcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questPanel: {fileID: 1989493776}
---- !u!4 &1508542706
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508542704}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 487.5089, y: 190.63646, z: 266.71936}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 25
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1587477385
 GameObject:
   m_ObjectHideFlags: 8
@@ -18202,6 +18176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84525d3271ad36c419e73c62a4bdae92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropAtStart: 0
+  dropAtEnd: 0
   mouseDown: {x: -1, y: 0, z: 0}
   id: 0
 --- !u!4 &1870961952
@@ -18819,8 +18795,8 @@ MonoBehaviour:
     der die Anforderungen erf\xFCllt.\n\nGehe daf\xFCr in den gew\xFCnschten Raum
     und dr\xFCcke F.\n\nDer aktuell gesuchte Raum hat die folgenden Anforderungen:\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19319,7 +19295,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
