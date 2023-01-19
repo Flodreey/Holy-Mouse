@@ -19,6 +19,7 @@ public class MouseMovement : MonoBehaviour
     private bool tethered = false;
     private Tether tether;
     private bool justJumped = false;
+    private Quaternion visualRotation = Quaternion.Euler(0,0,0);
 
     // How fast the player turns to face movement direction
     [SerializeField] float turnSmoothTime = 0.1f;
@@ -67,7 +68,7 @@ public class MouseMovement : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Interact")){
+        if (Input.GetButtonDown("Interact")){
             checkForInteraction();
         }
         if(Input.GetButtonDown("Cancel")){
@@ -84,6 +85,12 @@ public class MouseMovement : MonoBehaviour
             moveFreely();
         }
     }
+
+    private void LateUpdate()
+    {
+        handleVisuals();
+    }
+
     void handInQuest(){
         if(count==totalElements){
             SceneManager.LoadScene("Quest"+(currentLevel+1));
@@ -133,9 +140,9 @@ public class MouseMovement : MonoBehaviour
             // calculating direction in which player looks depending on the current rotation angle
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
 
-            playerVisual.transform.rotation = Quaternion.Euler(0f, visualAngle, 0f);
+            visualRotation = Quaternion.Euler(0f, visualAngle, 0f);
 
-            move = Quaternion.Euler(0.0f, targetAngle, 0.0f) * Vector3.forward;
+            move = transform.forward;
         }
 
         controller.Move(move * Time.deltaTime * speed);
@@ -239,9 +246,15 @@ public class MouseMovement : MonoBehaviour
             {
                 playerVisual.transform.Rotate(playerVisual.transform.forward, 180f, Space.World);
             }
+            visualRotation = playerVisual.transform.rotation;
         }
 
         // animation
         animator.SetBool("IsWalking", Mathf.Abs(movementInput) > 0.1f);
+    }
+
+    void handleVisuals()
+    {
+        playerVisual.transform.rotation = visualRotation;
     }
 }
