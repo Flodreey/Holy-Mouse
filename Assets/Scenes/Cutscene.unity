@@ -627,7 +627,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24216
+  m_Name: pb_Mesh29804
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2218,7 +2218,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24340
+  m_Name: pb_Mesh29930
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6695,7 +6695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <u></u><br>
+  m_text: <u>Architekt</u><br>Wie soll man das nur in vier Tagen hinbekommen?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 05b63505de5cf412fadf3a1acb92c58f, type: 2}
@@ -12587,7 +12587,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24400
+  m_Name: pb_Mesh29990
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16008,6 +16008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321e5c5b738e74dc3b67c24a7401eaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToSwitchScene: 105
 --- !u!1 &1581932594
 GameObject:
   m_ObjectHideFlags: 0
@@ -16111,7 +16112,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24388
+  m_Name: pb_Mesh29978
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16852,7 +16853,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24462
+  m_Name: pb_Mesh30052
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

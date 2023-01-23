@@ -57,8 +57,8 @@ MonoBehaviour:
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
   m_Clip: {fileID: 7400000, guid: 22f111d76f00744cfa70324243e95247, type: 2}
-  m_Position: {x: -3.470646, y: -0.18776381, z: 10.065784}
-  m_EulerAngles: {x: -0.005, y: 41.427, z: 0.013}
+  m_Position: {x: -3.4706483, y: -0.18776411, z: 10.06578}
+  m_EulerAngles: {x: -9, y: 41.427, z: 0}
   m_UseTrackMatchFields: 1
   m_MatchTargetFields: 63
   m_RemoveStartOffset: 1
@@ -356,8 +356,8 @@ MonoBehaviour:
   m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   speaker: "B\xFCrgermeister"
-  subtitleText: "Meine G\xFCte sind Sie ein Dickkopf! Ich gebe Ihnen auf keinen Fall
-    einen ganzen Monat. Aber ich kann die Bauarbeiten bis Montag hinausz\xF6gern.
+  subtitleText: "Meine G\xFCte, sind Sie ein Dickkopf! Ich gebe Ihnen auf keinen
+    Fall einen ganzen Monat. Aber ich kann die Bauarbeiten bis Montag hinausz\xF6gern.
     Sie haben also vier Tage, um Ihre Idee zu realisieren."
 --- !u!114 &-6490223607710600973
 MonoBehaviour:
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9acf39604e4af41688d17647c12aa065, type: 3}
   m_Name: SubtitleClip(Clone)
   m_EditorClassIdentifier: 
-  speaker: "B\xFCrgermesiter"
+  speaker: "B\xFCrgermeister"
   subtitleText: Tut mir Leid, da kann ich nichts machen. Sehen Sie sich die Kirche
     doch mal an.
 --- !u!114 &-5535912630835169772
@@ -1341,7 +1341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speaker: Architekt
   subtitleText: "Glauben Sie mir, es wird gut bei der Gemeinde ankommen! Das Geb\xE4ude
-    und die Architektur sind zu einzigartig, um es durch ein Wohnblock zu ersetzen!"
+    und die Architektur sind zu einzigartig, um sie durch einen Wohnblock zu ersetzen!"
 --- !u!114 &-3959259949753118029
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1441,7 +1441,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 360, y: 41.42654, z: 0}
+        value: {x: 351, y: 41.42697, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -1458,7 +1458,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -3.470646, y: -0.18776381, z: 10.065784}
+        value: {x: -3.4706469, y: -0.18776417, z: 10.065779}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -1520,7 +1520,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -3.470646
+        value: -3.4706469
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1539,7 +1539,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.18776381
+        value: -0.18776417
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1558,7 +1558,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 10.065784
+        value: 10.065779
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1577,7 +1577,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 360
+        value: 351
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1596,7 +1596,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 41.42654
+        value: 41.42697
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3535,7 +3535,7 @@ MonoBehaviour:
   m_Name: SubtitleClip(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   speaker: "B\xFCrgermeister"
-  subtitleText: Ach ja? Sehen Sie sich um. Von Monat zu Monat sinkt die Besucherzahl.
+  subtitleText: Ach ja? Sehen Sie sich um. Von Monat zu Monat sinken die Besucherzahlen.
 --- !u!114 &4219582460280402506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3864,7 +3864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speaker: "B\xFCrgermeister"
   subtitleText: "Wenn Sie bis dahin diese Kirche nicht in etwas Brauchbares verwandelt
-    haben, wird Ihre Arbeit zerst\xF6rt und mir ist egal wie viel Sie investiert
+    haben, wird Ihre Arbeit zerst\xF6rt und mir ist egal, wie viel Sie investiert
     haben! Einen sch\xF6nen Tag noch."
 --- !u!114 &8079958638611745986
 MonoBehaviour:
@@ -4919,6 +4919,5 @@ MonoBehaviour:
   m_Name: SubtitleClip(Clone)(Clone)
   m_EditorClassIdentifier: 
   speaker: "B\xFCrgermeister"
-  subtitleText: "Der Schuppen ist in einem grauenhaften Zustand, Sie kostet mich
-    und der Stadt enorm viel Geld, welches ich genauso gut aus dem Fenster werfen
-    k\xF6nnte. "
+  subtitleText: "Der Schuppen ist in einem grauenhaften Zustand, er kostet mich und
+    die Stadt enorm viel Geld, welches ich genauso gut aus dem Fenster werfen k\xF6nnte. "

@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Timeline : MonoBehaviour
 {
+    [Tooltip("After this amount of time in the timeline the scene will switch")]
+    [SerializeField]
+    double timeToSwitchScene = 105;
+
     private PlayableDirector playableDirector;
     // Start is called before the first frame update
     void Start()
@@ -16,9 +20,9 @@ public class Timeline : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playableDirector.time >= 104)
+        if (playableDirector.time >= timeToSwitchScene)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
