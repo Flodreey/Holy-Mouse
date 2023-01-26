@@ -214,14 +214,14 @@ public class MouseMovement : MonoBehaviour
         {
             Vector3 lineDir;
             Vector3 closestPoint = tether.GetClosestPoint(transform.position, out lineDir);
-            Vector3 cameraDir = mainCamera.transform.forward;
-
-            Vector3 dir = lineDir * (Vector3.Dot(lineDir, cameraDir) > 0 ? 1 : -1);
+            //Vector3 cameraDir = mainCamera.transform.forward;
+            int dirSwitch = movementInput > 0 ? 1 : -1;
+            Vector3 dir = -lineDir;// * (Vector3.Dot(lineDir, cameraDir) > 0 ? 1 : -1);
 
             transform.position += movementInput * dir * speed * Time.deltaTime;
             transform.position = tether.GetClosestPoint(transform.position, out lineDir);
 
-            if(tether.shouldDrop(transform.position, dir))
+            if(tether.shouldDrop(transform.position, dir * dirSwitch))
             {
                 tether = null;
                 tethered = false;
@@ -231,7 +231,7 @@ public class MouseMovement : MonoBehaviour
 
             // Visual stuff
             playerVisual.transform.rotation = new Quaternion();
-            playerVisual.transform.LookAt(transform.position + dir);
+            playerVisual.transform.LookAt(transform.position + dir * dirSwitch);
 
             Vector3 mouseDownAdjusted = tether.mouseDown;
             float scalar = Vector3.Dot(playerVisual.transform.forward, mouseDownAdjusted);
