@@ -17,7 +17,8 @@ public class Quest1Script : MonoBehaviour
     private GameObject[] cubeFolders;
     private GameObject[] stickyNodes;
     private int count;
-    [SerializeField] Text textField;
+    [SerializeField] TextMeshProUGUI textField1;
+    [SerializeField] TextMeshProUGUI textField2;
     [SerializeField] int currentLevel;
     [SerializeField] int totalElements;
 
@@ -26,7 +27,10 @@ public class Quest1Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isActive=false;
+        textField1.text = "0 / " + totalElements;
+        textField2.text = textField1.text;
+
+        isActive =false;
         cubeFolders = new GameObject[totalElements];
         stickyNodes = new GameObject[totalElements];
 
@@ -109,7 +113,8 @@ public class Quest1Script : MonoBehaviour
                         cubeFolders[i].SetActive(false);
                         count++;
                         Debug.Log("Gegenstand gefunden! Du hast jetzt "+count+" Gegenstände identifiziert");
-                        textField.text = count + " von "+totalElements+" Gegenständen gefunden.";
+                        textField1.text = count + " / " + totalElements;
+                        textField2.text = textField1.text;
                         stickyNodes[i].SetActive(true);
                     }
                 }

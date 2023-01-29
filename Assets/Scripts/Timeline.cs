@@ -22,7 +22,7 @@ public class Timeline : MonoBehaviour
     {
         if (playableDirector.time >= timeToSwitchScene)
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("Quest1");
         }
     }
 }

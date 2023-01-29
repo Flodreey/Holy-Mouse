@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour
     }
     public void NewGame(){
         File.Delete("savedata.dat");
-        SceneManager.LoadScene("Quest1");
+        SceneManager.LoadScene("Cutscene");
     }
     public void QuitGame(){
         Debug.Log("QUIT!");
