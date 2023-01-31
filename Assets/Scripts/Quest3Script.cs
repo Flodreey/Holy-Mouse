@@ -14,9 +14,10 @@ public class Quest3Script : MonoBehaviour
     private bool isActive;
     [SerializeField] GameObject playerVisual;
 
-    public GameObject[] pinkCubes;
+    private Dictionary<string, GameObject> rooms;
     private int count;
-    [SerializeField] Text textField;
+    [SerializeField] TextMeshProUGUI textField1;
+    [SerializeField] TextMeshProUGUI textField2;
     private int currentLevel;
     [SerializeField] int totalElements;
     [SerializeField] GameObject planArea;
@@ -26,14 +27,17 @@ public class Quest3Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        textField1.text = "0 / " + totalElements;
+        textField2.text = textField1.text;
+
         isActive=false;
-        pinkCubes = new GameObject[totalElements];
         count=0;
         currentLevel=3;
 
-        string name="ColliderCube";
-        for(int i=1;i<=totalElements;i++){
-            pinkCubes[i-1] = GameObject.Find(name+i);
+        GameObject roomsFolder= GameObject.Find("Rooms");
+        for(int i=1;i<=roomsFolder.transform.childCount;i++){
+            GameObject roomObject=roomsFolder.transform.GetChild(i).gameObject;
+            rooms.Add(roomObject.name,roomObject);
         }
 
         // Create a new GameState object with the current game data
@@ -52,17 +56,16 @@ public class Quest3Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Interact")){
+        /*if(Input.GetButtonDown("Interact")){
             if(count<totalElements){
                 checkForInteraction();  
             }
-        }
+        }*/
         if(Input.GetButtonDown("Cancel")){
             openPauseMenu();
         }
         if (Input.GetButtonDown("Tab"))
         {
-            Debug.Log("Tab button got pressed");
             if(isActive){
                 questPanel.SetActive(false);
                 isActive=false;
@@ -77,18 +80,26 @@ public class Quest3Script : MonoBehaviour
         if (other.gameObject.CompareTag("FinishArea"))
         {
             FinishFunction();
+        }else if(other.gameObject.name=="AltarRoom"){
+            Debug.Log("Entered altar room");
+        }else if(other.gameObject.name=="SideEntranceRoom"){
+            Debug.Log("Entered side entrance room");
+        }else if(other.gameObject.name=="MainEntranceRoom"){
+            Debug.Log("Entered main entrance room");
+        }else if(other.gameObject.name=="SecondFloorRoom"){
+            Debug.Log("Entered second floor room");
         }
     }
     private void FinishFunction()
     {
         if(count==totalElements){
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("Quest4");
         }
     }
     void openPauseMenu(){
         pauseMenu.SetActive(!pauseMenu.activeSelf);
     }
-    void checkForInteraction(){
+    /*void checkForInteraction(){
         if(pinkCubes[count].activeSelf){
             BoxCollider areaCollider=pinkCubes[count].GetComponent<BoxCollider>();
             if(areaCollider.bounds.Contains(playerVisual.transform.position)){
@@ -113,5 +124,5 @@ public class Quest3Script : MonoBehaviour
             Debug.Log("Weird! Der gesuchte Raum ist nicht active. Count Variable wird um 1 erhöht");
             count++;
         }
-    }
+    }*/
 }
