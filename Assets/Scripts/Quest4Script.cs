@@ -18,6 +18,8 @@ public class Quest4Script : MonoBehaviour
     private GameObject altarEntranceMaterial;
     [SerializeField] GameObject ladderEntrance;
     [SerializeField] GameObject altarEntrance;
+    [SerializeField] GameObject ladderEntranceObject;
+    [SerializeField] GameObject altarEntranceObject;
     private int placed;
     [SerializeField] TextMeshProUGUI textField1;
     [SerializeField] TextMeshProUGUI textField2;
@@ -29,7 +31,7 @@ public class Quest4Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textField1.text = "0 / " + "2"; //TODO muss natürlich abgeändert werden.
+        textField1.text = "0 / " + "2";
         textField2.text = textField1.text;
 
         isActive=false;
@@ -60,26 +62,32 @@ public class Quest4Script : MonoBehaviour
                 float distance = Vector3.Distance(playerVisual.transform.position, ladderEntranceMaterial.transform.position);
                 if(distance<0.5){
                     ladderEntranceMaterial.SetActive(false);
+                    ladderEntranceMaterial.transform.parent.gameObject.SetActive(false);
                     ladderEntrance.SetActive(true);
                 }
             }else{
                 if(ladderEntrance.activeSelf && ladderEntrance.GetComponent<BoxCollider>().bounds.Contains(playerVisual.transform.position)){
-                    //TODO Aktiviere GameObject sodass Eingang verschlossen ist.
+                    ladderEntranceObject.SetActive(true);
                     ladderEntrance.SetActive(false);
                     placed++;
+                    textField1.text = placed+" / " + "2";
+                    textField2.text = textField1.text;
                 }
             }
             if(altarEntranceMaterial.activeSelf){
                 float distance = Vector3.Distance(playerVisual.transform.position, altarEntranceMaterial.transform.position);
                 if(distance<0.5){
                     altarEntranceMaterial.SetActive(false);
+                    altarEntranceMaterial.transform.parent.gameObject.SetActive(false);
                     altarEntrance.SetActive(true);
                 }
             }else{
                 if(altarEntrance.activeSelf && altarEntrance.GetComponent<BoxCollider>().bounds.Contains(playerVisual.transform.position)){
-                    //TODO Aktiviere GameObject sodass Eingang verschlossen ist.
+                    altarEntranceObject.SetActive(true);
                     altarEntrance.SetActive(false);
                     placed++;
+                    textField1.text = placed+" / " + "2";
+                    textField2.text = textField1.text;
                 }
             }
         }

@@ -16,8 +16,6 @@ public class Quest3Script : MonoBehaviour
     [SerializeField] GameObject playerVisual;
 
     private Dictionary<string, GameObject> rooms;
-    [SerializeField] TextMeshProUGUI textField1;
-    [SerializeField] TextMeshProUGUI textField2;
     private int currentLevel;
     [SerializeField] int totalElements;
     [SerializeField] GameObject planArea;
@@ -37,9 +35,6 @@ public class Quest3Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        textField1.text = "0 / " + totalElements;
-        textField2.text = textField1.text;
-
         isActive=false;
         currentLevel=3;
         inRoom=false;
@@ -226,7 +221,7 @@ public class Quest3Script : MonoBehaviour
                 textFieldsDictionary.Add("button0","Buero");
                 textFieldsDictionary.Add("button1","Garderobe");
                 textFieldsDictionary.Add("button2","Spielbereich");
-                roomDescription = "Du chillst gerade im Altarraum";
+                roomDescription = "\nDu befindest dich gerade im alten Altarraum.\n\nDer Altarraum wird in der Planung des Architekten von dem restlichen Kirchenraum getrennt werden.\n\nSo entsteht ein grosser abgeschlossener Raum, der fuer vielerlei Sachen genutzt werden kann.\n\nWas soll in den frueheren Altarraum gebaut werden?";     
                 textFieldsDictionary.Add("roomDescription",roomDescription);
                 break;
             case Rooms.Entrance:
@@ -234,7 +229,7 @@ public class Quest3Script : MonoBehaviour
                 textFieldsDictionary.Add("button0","Garderobe");
                 textFieldsDictionary.Add("button1","Ruheraum");
                 textFieldsDictionary.Add("button2","Buero");
-                roomDescription = "Du chillst gerade im Eingang";
+                roomDescription = "\nDu befindest dich gerade im Haupteingangsbereich der Kirche.\n\nUeber diesen Eingang werden in Zukunft alle Kinder in den Kindergarten reinkommen. Es wird somit ein Durchgangsraum sein, wo haeufig viel los sein wird.\n\nWas soll deiner Meinung nach in diesen Raum reinkommen?";
                 textFieldsDictionary.Add("roomDescription",roomDescription);
                 break;
             case Rooms.Orgelempore:
@@ -242,7 +237,7 @@ public class Quest3Script : MonoBehaviour
                 textFieldsDictionary.Add("button0","Ruheraum");
                 textFieldsDictionary.Add("button1","Buero");
                 textFieldsDictionary.Add("button2","Spielbereich");
-                roomDescription = "Du chillst gerade auf der Orgelempore";
+                roomDescription = "\nDu befindest dich gerade auf der Orgelempore.\n\nVon hier oben kann man den gesamten Kirchenraum ueberblicken. Dennoch ist der Raum, durch seine Erhoehung raeumlich von den anderen Raeumlichkeiten getrennt.\n\nIm Plan des Architekten trennt zudem eine neue Wand den Raum von der Treppe.\n\nWas sollte am besten in den hier entstehenden Raum?";
                 textFieldsDictionary.Add("roomDescription",roomDescription);
                 break;
             case Rooms.QuietRoom:
@@ -250,7 +245,7 @@ public class Quest3Script : MonoBehaviour
                 textFieldsDictionary.Add("button0","Spielbereich");
                 textFieldsDictionary.Add("button1","Garderobe");
                 textFieldsDictionary.Add("button2","Ruheraum");
-                roomDescription = "Du chillst gerade im kleinen Raum mit den Spielsachen";
+                roomDescription = "\nDu befindest dich gerade im kleinen Raum neben der Orgelempore.\n\nEr ist raeumlich von den anderen Zimmern getrennt. Dadurch ist es hier verhaeltnissmaessig leise. Hier wuerde man wenig von der alltaeglichen Lautstaerke im Kindergarten mitbekommen.\n\nWas sollte in diesen Raum deiner Meinung nach kommen?";
                 textFieldsDictionary.Add("roomDescription",roomDescription);
                 break;
             default:
