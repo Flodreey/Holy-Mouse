@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using System.IO;
+using System;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public class Quest3Script : MonoBehaviour
@@ -15,7 +16,6 @@ public class Quest3Script : MonoBehaviour
     [SerializeField] GameObject playerVisual;
 
     private Dictionary<string, GameObject> rooms;
-    private int count;
     [SerializeField] TextMeshProUGUI textField1;
     [SerializeField] TextMeshProUGUI textField2;
     private int currentLevel;
@@ -23,22 +23,48 @@ public class Quest3Script : MonoBehaviour
     [SerializeField] GameObject planArea;
 
     [SerializeField] GameObject pauseMenu;
-    
+
+    [SerializeField] GameObject roomButton;
+
+    private Rooms currentRoom;
+    private bool inRoom;
+    [SerializeField] TextMeshProUGUI roomDescription;
+    [SerializeField] TextMeshProUGUI roomName;
+    [SerializeField] GameObject roomChoiceButtons;
+    private Dictionary<Rooms,Dictionary<string, string>> quest3Dictionary;
+    private Button[] buttons;
+    private Dictionary<Rooms,RoomButtonClicked> roomChoice;
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         textField1.text = "0 / " + totalElements;
         textField2.text = textField1.text;
 
         isActive=false;
-        count=0;
         currentLevel=3;
+        inRoom=false;
 
+        rooms=new Dictionary<string,GameObject>();
         GameObject roomsFolder= GameObject.Find("Rooms");
-        for(int i=1;i<=roomsFolder.transform.childCount;i++){
+        for(int i=0;i<roomsFolder.transform.childCount;i++){
             GameObject roomObject=roomsFolder.transform.GetChild(i).gameObject;
             rooms.Add(roomObject.name,roomObject);
         }
+        roomChoice=new Dictionary<Rooms,RoomButtonClicked>();
+        quest3Dictionary=new Dictionary<Rooms,Dictionary<string,string>>();
+        foreach(Rooms room in Enum.GetValues(typeof(Rooms))){
+            Dictionary<string,string> textFieldsDictionary=getTextFieldDictionary(room);
+            quest3Dictionary.Add(room, textFieldsDictionary);
+            roomChoice.Add(room,RoomButtonClicked.None);
+        }
+        buttons=new Button[3];
+        for(int i=0;i<roomChoiceButtons.transform.childCount;i++){
+            Button button=roomChoiceButtons.transform.GetChild(i).gameObject.GetComponent<Button>();
+            buttons[i]=button;
+        }
+        buttons[0].onClick.AddListener(Button1Clicked);
+        buttons[1].onClick.AddListener(Button2Clicked);
+        buttons[2].onClick.AddListener(Button3Clicked);
 
         // Create a new GameState object with the current game data
         GameState gameState = new GameState(currentLevel);
@@ -52,15 +78,46 @@ public class Quest3Script : MonoBehaviour
         // Save the byte array to a file
         File.WriteAllBytes("savedata.dat", data);
     }
-
+    void Button1Clicked(){
+        if(inRoom==true){
+            roomChoice[currentRoom] = RoomButtonClicked.First;
+            colorizeButtons(0);
+        }
+    }
+    void Button2Clicked(){
+        if(inRoom==true){
+            roomChoice[currentRoom] = RoomButtonClicked.Second;
+            colorizeButtons(1);
+        }
+    }
+    void Button3Clicked(){
+        if(inRoom==true){
+            roomChoice[currentRoom] = RoomButtonClicked.Third;
+            colorizeButtons(2);
+        }
+    }
+    void colorizeButtons(int whichOne){
+        for(int i=0;i<roomChoiceButtons.transform.childCount;i++){
+            TextMeshProUGUI textField=roomChoiceButtons.transform.GetChild(i).gameObject.GetComponentInChildren<TextMeshProUGUI>();
+            if(whichOne==i){
+                Color color = new Color32(159, 124, 33, 255);
+                textField.color = color;
+            }else{
+                Color color = new Color32(255, 255, 255, 255);
+                textField.color = color;
+            }
+        }
+    }
+    void colorizeButtons(){
+        for(int i=0;i<roomChoiceButtons.transform.childCount;i++){
+            TextMeshProUGUI textField=roomChoiceButtons.transform.GetChild(i).gameObject.GetComponentInChildren<TextMeshProUGUI>();
+            Color color = new Color32(255, 255, 255, 255);
+            textField.color = color;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        /*if(Input.GetButtonDown("Interact")){
-            if(count<totalElements){
-                checkForInteraction();  
-            }
-        }*/
         if(Input.GetButtonDown("Cancel")){
             openPauseMenu();
         }
@@ -76,53 +133,141 @@ public class Quest3Script : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other)
+    {   
+        if (other.gameObject.CompareTag("FinishArea"))
+        {
+            FinishFunction();
+        }else{
+            inRoom=true;
+            roomButton.SetActive(true);
+            if(other.gameObject.name=="AltarRoom"){
+                currentRoom = Rooms.AltarRoom;
+            }else if(other.gameObject.name=="Orgelempore"){
+                currentRoom = Rooms.Orgelempore;
+            }else if(other.gameObject.name=="MainEntranceRoom"){
+                currentRoom = Rooms.Entrance;
+            }else if(other.gameObject.name=="SecondFloorRoom"){
+                currentRoom = Rooms.QuietRoom;
+            }
+            Dictionary<string,string>textDictionary=quest3Dictionary[currentRoom];
+            roomDescription.text=textDictionary["roomDescription"];
+            roomName.text=textDictionary["roomName"];
+            for(int i=0;i<roomChoiceButtons.transform.childCount;i++){
+                TextMeshProUGUI textField=roomChoiceButtons.transform.GetChild(i).gameObject.GetComponentInChildren<TextMeshProUGUI>();
+                textField.text=textDictionary["button"+i];
+                switch(roomChoice[currentRoom]){
+                    case RoomButtonClicked.First:
+                        colorizeButtons(0);
+                        break;
+                    case RoomButtonClicked.Second:
+                        colorizeButtons(1);
+                        break;
+                    case RoomButtonClicked.Third:
+                        colorizeButtons(2);
+                        break;
+                    default:
+                        colorizeButtons();
+                        break;
+                }
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("FinishArea"))
         {
             FinishFunction();
-        }else if(other.gameObject.name=="AltarRoom"){
-            Debug.Log("Entered altar room");
-        }else if(other.gameObject.name=="SideEntranceRoom"){
-            Debug.Log("Entered side entrance room");
-        }else if(other.gameObject.name=="MainEntranceRoom"){
-            Debug.Log("Entered main entrance room");
-        }else if(other.gameObject.name=="SecondFloorRoom"){
-            Debug.Log("Entered second floor room");
+        }else{
+            roomButton.SetActive(false);
+            inRoom=false;
         }
     }
     private void FinishFunction()
     {
-        if(count==totalElements){
+        List<string> wronglyAssignedRooms = new List<string>();
+        if(roomChoice[Rooms.AltarRoom]!=RoomButtonClicked.Third){
+            wronglyAssignedRooms.Add("Spielbereich");
+        }
+        if(roomChoice[Rooms.Entrance]!=RoomButtonClicked.First){
+            wronglyAssignedRooms.Add("Garderobe");
+        }
+        if(roomChoice[Rooms.Orgelempore]!=RoomButtonClicked.Second){
+            wronglyAssignedRooms.Add("Buero");
+        }
+        if(roomChoice[Rooms.QuietRoom]!=RoomButtonClicked.Third){
+            wronglyAssignedRooms.Add("Ruheraum");
+        }
+        if(wronglyAssignedRooms.Count==0){
             SceneManager.LoadScene("Quest4");
+        }else{
+            string output;
+            if(wronglyAssignedRooms.Count==1){
+                output="Du hast leider nicht alle Räume korrekt zugewiesen. Folgender Raum konnte nicht korrekt zugewiesen werden: "+wronglyAssignedRooms[0];
+            }else{
+                output="Du hast leider nicht alle Räume korrekt zugewiesen. Folgende Räume konnten nicht korrekt zugewiesen werden: ";
+                for(int i=0; i<wronglyAssignedRooms.Count-1; i++){
+                    output+=wronglyAssignedRooms[i]+", ";
+                }
+                output+=wronglyAssignedRooms[wronglyAssignedRooms.Count-1];
+            }
+            Debug.Log(output);
         }
     }
     void openPauseMenu(){
         pauseMenu.SetActive(!pauseMenu.activeSelf);
     }
-    /*void checkForInteraction(){
-        if(pinkCubes[count].activeSelf){
-            BoxCollider areaCollider=pinkCubes[count].GetComponent<BoxCollider>();
-            if(areaCollider.bounds.Contains(playerVisual.transform.position)){
-                pinkCubes[count].SetActive(false);
-                count++;
-                Debug.Log("Raum erfolgreich identifiziert! Du hast jetzt "+count+" Räume identifiziert");
-                switch (count){
-                    case 1:
-                        textField.text = "Ein geeigneter Raum für ein Büro wird gesucht:\n- der Raum darf kein Sichtkontakt zum Kirchenraum haben\n- zudem sollte der Raum nicht besonders groß sein";
-                        break;
-                    case 2:
-                        textField.text = "Ein geeigneter Raum für die Turnhalle wird gesucht:\n- der Raum sollte nicht in dem großen Kirchenraum sein\n- zudem sollte er genug Platz bieten, damit die Kinder herumtoben können\n- Zielgröße ist eine kleiner Turnhalle";
-                        break;
-                    default:
-                        textField.text = "Du hast alle Räume erfolgreich zugewiesen!\n\nGehe nun zu dem im Kirchenraum ausliegenden Plan und bestätige deine Auswahl mit P.";
-                        break;
-                }
-            }else{
-                Debug.Log("Du befindest dich nicht im richtigen Raum.");
-            }
-        }else{
-            Debug.Log("Weird! Der gesuchte Raum ist nicht active. Count Variable wird um 1 erhöht");
-            count++;
+    private Dictionary<string,string> getTextFieldDictionary(Rooms room){
+        Dictionary<string,string> textFieldsDictionary=new Dictionary<string,string>();
+        string roomDescription="";
+        switch (room)
+        {
+            case Rooms.AltarRoom:
+                textFieldsDictionary.Add("roomName","Altarraum");
+                textFieldsDictionary.Add("button0","Buero");
+                textFieldsDictionary.Add("button1","Garderobe");
+                textFieldsDictionary.Add("button2","Spielbereich");
+                roomDescription = "Du chillst gerade im Altarraum";
+                textFieldsDictionary.Add("roomDescription",roomDescription);
+                break;
+            case Rooms.Entrance:
+                textFieldsDictionary.Add("roomName","Eingang");
+                textFieldsDictionary.Add("button0","Garderobe");
+                textFieldsDictionary.Add("button1","Ruheraum");
+                textFieldsDictionary.Add("button2","Buero");
+                roomDescription = "Du chillst gerade im Eingang";
+                textFieldsDictionary.Add("roomDescription",roomDescription);
+                break;
+            case Rooms.Orgelempore:
+                textFieldsDictionary.Add("roomName","Orgelempore");
+                textFieldsDictionary.Add("button0","Ruheraum");
+                textFieldsDictionary.Add("button1","Buero");
+                textFieldsDictionary.Add("button2","Spielbereich");
+                roomDescription = "Du chillst gerade auf der Orgelempore";
+                textFieldsDictionary.Add("roomDescription",roomDescription);
+                break;
+            case Rooms.QuietRoom:
+                textFieldsDictionary.Add("roomName","Emporenraum");
+                textFieldsDictionary.Add("button0","Spielbereich");
+                textFieldsDictionary.Add("button1","Garderobe");
+                textFieldsDictionary.Add("button2","Ruheraum");
+                roomDescription = "Du chillst gerade im kleinen Raum mit den Spielsachen";
+                textFieldsDictionary.Add("roomDescription",roomDescription);
+                break;
+            default:
+                break;
         }
-    }*/
+        return textFieldsDictionary;
+    }
+    private enum Rooms {
+        AltarRoom,
+        Entrance,
+        Orgelempore,
+        QuietRoom
+    }
+    private enum RoomButtonClicked {
+        None,
+        First,
+        Second,
+        Third
+    }
 }
