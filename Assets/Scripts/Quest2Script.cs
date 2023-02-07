@@ -110,6 +110,8 @@ public class Quest2Script : MonoBehaviour
                     if(distance<0.5){
                         cubeFolders[i].SetActive(false);
                         count++;
+                        textField1.text=count+" / "+totalElements;
+                        textField2.text=textField1.text;
                         stickyNodes[i].SetActive(true);
                     }
                 }

@@ -40,15 +40,16 @@ public class Quest1Script : MonoBehaviour
         }
         //Assign StickyNodes GameObjects
         stickyNodes[0] = GameObject.Find("BänkeNordStickyNotes");
-        stickyNodes[0].SetActive(false);
         stickyNodes[1] = GameObject.Find("AltarStickyNotes");
-        stickyNodes[1].SetActive(false);
         stickyNodes[2] = GameObject.Find("LautsprecherStickyNotes");
-        stickyNodes[2].SetActive(false);
         stickyNodes[3] = GameObject.Find("BänkeSüdStickyNotes");
-        stickyNodes[3].SetActive(false);
         stickyNodes[4] = GameObject.Find("BänkeNordStickyNotes");
-        stickyNodes[4].SetActive(false);
+        if(stickyNodes[4]==null){
+            Debug.Log("Hier passieren ganz wilde sachen");
+        }
+        for(int i=0;i<totalElements;i++){
+            stickyNodes[i].SetActive(false);
+        }
 
         // Create a new GameState object with the current game data
         GameState gameState = new GameState(currentLevel);
@@ -112,7 +113,6 @@ public class Quest1Script : MonoBehaviour
                     if(distance<0.5){
                         cubeFolders[i].SetActive(false);
                         count++;
-                        Debug.Log("Gegenstand gefunden! Du hast jetzt "+count+" Gegenstände identifiziert");
                         textField1.text = count + " / " + totalElements;
                         textField2.text = textField1.text;
                         stickyNodes[i].SetActive(true);
