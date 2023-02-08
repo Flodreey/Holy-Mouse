@@ -98,6 +98,15 @@ public class Quest2Script : MonoBehaviour
     }
     void openPauseMenu(){
         pauseMenu.SetActive(!pauseMenu.activeSelf);
+
+        if (pauseMenu.activeSelf)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
     void checkForInteraction(){
         for(int i=0;i<totalElements;i++){
