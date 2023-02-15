@@ -93,7 +93,8 @@ public class Quest2Script : MonoBehaviour
     private void FinishFunction()
     {
         if(count==totalElements){
-            SceneManager.LoadScene("Quest"+(currentLevel+1));
+            //SceneManager.LoadScene("Quest"+(currentLevel+1));
+            CutsceneManager.StartCutscene();
         }
     }
     void openPauseMenu(){

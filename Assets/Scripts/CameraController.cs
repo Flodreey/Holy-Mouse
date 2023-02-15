@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour
     public void SetCameraSpeed(Slider slider)
     {
         cameraSpeed = slider.value * maxCameraSpeed;
+        if (freeLook == null) return;
         freeLook.m_XAxis.m_MaxSpeed = speedXYRatio * cameraSpeed;
         freeLook.m_YAxis.m_MaxSpeed = cameraSpeed;
     }
