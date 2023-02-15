@@ -28,6 +28,7 @@ public class CutsceneManager : MonoBehaviour
     void Begin()
     {
         if (frames.Length == 0) return;
+        display.gameObject.GetComponentInParent<Canvas>().sortingOrder = 7;
         display.gameObject.SetActive(true);
         StartCoroutine(ShowFrame(0));
     }

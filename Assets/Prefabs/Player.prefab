@@ -467,7 +467,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3995050977554545871}
-  m_LocalRotation: {x: 0.18188867, y: -0, z: -0, w: 0.98331916}
+  m_LocalRotation: {x: 0.18188867, y: 3e-45, z: -1e-45, w: 0.98331916}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -621,7 +621,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5154041903586127351}
-  m_LocalRotation: {x: 0.15903096, y: 0.0000000084937035, z: -0.0000000013681737, w: 0.98727363}
+  m_LocalRotation: {x: 0.15903096, y: -0.0000000084937035, z: 0.0000000013681737, w: 0.98727363}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1142,7 +1142,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!114 &6200560946260352011
 MonoBehaviour:
@@ -1196,7 +1196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c51991bb98a7844dad088c6708ebb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frames: []
+  frames:
+  - {fileID: 21300000, guid: e8d3a0971c0624ee59760670b2765132, type: 3}
   timePerFrame: 3
   fadeSpeed: 4
   nextScene: Quest2
@@ -1227,7 +1228,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8521119510592293401}
-  m_LocalRotation: {x: 0.1818887, y: -0.000000029305198, z: 0.0000000054207066, w: 0.98331916}
+  m_LocalRotation: {x: 0.1818887, y: 0.000000029305198, z: -0.0000000054207066, w: 0.98331916}
   m_LocalPosition: {x: 0, y: 0.3499999, z: -0.79999924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
