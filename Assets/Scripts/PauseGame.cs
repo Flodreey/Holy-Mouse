@@ -10,4 +10,14 @@ public class PauseGame : MonoBehaviour
     public void ReturnToMainMenu(){
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void StopTime()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ContinueTime()
+    {
+        Time.timeScale = 1;
+    }
 }
