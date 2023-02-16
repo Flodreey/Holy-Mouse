@@ -118,7 +118,8 @@ public class Quest4Script : MonoBehaviour
     private void FinishFunction()
     {
         if(placed==2){
-            SceneManager.LoadScene("MainMenu");
+            //SceneManager.LoadScene("MainMenu");
+            CutsceneManager.StartCutscene();
         }
     }
     void openPauseMenu(){

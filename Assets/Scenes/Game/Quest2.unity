@@ -28855,6 +28855,10 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2232306336815656637, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2232306336815656637, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.3499999
       objectReference: {fileID: 0}
@@ -28888,11 +28892,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2355366405752522279, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000084937035
+      value: 0.0000000084937035
       objectReference: {fileID: 0}
     - target: {fileID: 2355366405752522279, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000013681737
+      value: -0.0000000013681737
       objectReference: {fileID: 0}
     - target: {fileID: 2630973954044068763, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_XAxis.m_MaxSpeed
@@ -28910,17 +28914,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.79999924
       objectReference: {fileID: 0}
+    - target: {fileID: 5483408714936003816, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
+      propertyPath: m_text
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5483408715575996046, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_text
-      value: "Der Architekt braucht deine Hilfe Maengel zu identifizieren, die vor
-        dem Umbau ausgebessert werden muessen, damit sich spaeter niemand daran verletzt.
-        \n\nSuche dafuer die Kirche ab und markiere alle Maengel, die dringend ausgebessert
-        werden m\xFCssen. \n\nGehe dafuer in die unmittelbare Naehe der Maengel und
-        druecke E."
+      value: "\nDer Architekt braucht deine Hilfe Maengel zu identifizieren, die
+        vor dem Umbau ausgebessert werden muessen, damit sich spaeter niemand daran
+        verletzt. \n\nSuche dafuer die Kirche ab und markiere alle Maengel, die dringend
+        ausgebessert werden muessen. \n\nGehe dafuer in die unmittelbare Naehe der
+        Maengel und druecke E.\n\nWenn du alle identifiziert hast, kehre zu deinem
+        Maeuseloch zurueck."
       objectReference: {fileID: 0}
     - target: {fileID: 5483408716388663468, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483408716433161501, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
+      propertyPath: m_text
+      value: Quest 2
       objectReference: {fileID: 0}
     - target: {fileID: 6181734502780393941, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_RootOrder
@@ -28976,15 +28989,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848012511673649353, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.20474713
+      value: 0.2047471
       objectReference: {fileID: 0}
     - target: {fileID: 6848012511673649353, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1.6258276e-15
+      value: -0.000000029170959
       objectReference: {fileID: 0}
     - target: {fileID: 6848012511673649353, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -5.666373e-16
+      value: 0.0000000061019394
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
