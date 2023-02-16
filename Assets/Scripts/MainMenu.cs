@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour
             MemoryStream stream = new MemoryStream(data);
             GameState gameState = (GameState)formatter.Deserialize(stream);
 
+            Options.loadMouseSensitivity(gameState.getMouseSensitivity());
+
             // Load the saved game state
             if(gameState.getLevel()<=3&&gameState.getLevel()>=1){
                 SceneManager.LoadScene("Quest"+gameState.getLevel());

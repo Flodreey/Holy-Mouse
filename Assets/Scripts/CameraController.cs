@@ -7,31 +7,43 @@ public class CameraController : MonoBehaviour
 {
     public static float cameraSpeed = 15f;
 
-    [SerializeField] float maxCameraSpeed = 30f;
+    [SerializeField] static float maxCameraSpeed = 30f;
     [SerializeField] float focusObjectMoveSpeed = 2f;
     [SerializeField] float focusObjectMaxDistance = .5f;
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject focusObject;
     Vector3 focusPointTarget;
+    static CameraController instance;
 
     static float speedXYRatio;
     Cinemachine.CinemachineFreeLook freeLook;
 
     void Start()
     {
+        instance = this;
+
         freeLook = FindObjectOfType<Cinemachine.CinemachineFreeLook>();
         freeLook.LookAt = focusObject.transform;
         freeLook.Follow = focusObject.transform;
-        cameraSpeed = freeLook.m_YAxis.m_MaxSpeed;
+        //cameraSpeed = freeLook.m_YAxis.m_MaxSpeed;
         speedXYRatio = freeLook.m_XAxis.m_MaxSpeed / freeLook.m_YAxis.m_MaxSpeed;
+
+        SetCameraSpeed(cameraSpeed);
     }
 
-    public void SetCameraSpeed(Slider slider)
+    void SetCameraSpeed(float value)
     {
-        cameraSpeed = slider.value * maxCameraSpeed;
+        //cameraSpeed = value * maxCameraSpeed;
         if (freeLook == null) return;
         freeLook.m_XAxis.m_MaxSpeed = speedXYRatio * cameraSpeed;
         freeLook.m_YAxis.m_MaxSpeed = cameraSpeed;
+    }
+
+    public static void SetMouseSensitivity(float value)
+    {
+        cameraSpeed = value * maxCameraSpeed;
+        if (instance == null) return;
+        instance.SetCameraSpeed(value);
     }
     
     void Update()
