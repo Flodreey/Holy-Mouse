@@ -18514,6 +18514,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 764908394984917855, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 797403095550784810, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -18842,6 +18846,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4131592157532945720, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4171738915313116510, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -18885,6 +18893,10 @@ PrefabInstance:
     - target: {fileID: 4911172184781705056, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5048408021454643371, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5067936392668791662, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
       propertyPath: m_Layer
@@ -19042,6 +19054,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6877423535378615794, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6889929139582999258, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -19081,6 +19097,10 @@ PrefabInstance:
     - target: {fileID: 7455577812315834937, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504505705698905980, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7509627832218634111, guid: cf0c8ba970ee18948b2f036a3cfae7f3, type: 3}
       propertyPath: m_StaticEditorFlags
