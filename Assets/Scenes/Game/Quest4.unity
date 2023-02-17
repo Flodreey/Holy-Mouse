@@ -22415,16 +22415,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2355366405752522279, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000084937035
+      value: 0.0000000084937035
       objectReference: {fileID: 0}
     - target: {fileID: 2355366405752522279, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000013681737
+      value: -0.0000000013681737
       objectReference: {fileID: 0}
     - target: {fileID: 2693093560039254482, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: nextScene
       value: MainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2693093560039254482, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
+      propertyPath: frames.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: b3bac464e2b464848beae6d6928877ea, type: 3}
     - target: {fileID: 3106545547403129528, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: tetherSnapDistance
       value: 0.2
@@ -22510,15 +22514,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848012511673649353, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2047471
+      value: 0.20474713
       objectReference: {fileID: 0}
     - target: {fileID: 6848012511673649353, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000029170959
+      value: -1.6258276e-15
       objectReference: {fileID: 0}
     - target: {fileID: 6848012511673649353, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000061019394
+      value: 5.666373e-16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
