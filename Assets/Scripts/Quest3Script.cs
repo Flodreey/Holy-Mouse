@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using System.IO;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.Playables;
 
 public class Quest3Script : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class Quest3Script : MonoBehaviour
     [SerializeField] TextMeshProUGUI roomDescription;
     [SerializeField] TextMeshProUGUI roomName;
     [SerializeField] GameObject roomChoiceButtons;
+    [SerializeField] PlayableDirector mouseWriteCutscene;
     private Dictionary<Rooms,Dictionary<string, string>> quest3Dictionary;
     private Button[] buttons;
     private Dictionary<Rooms,RoomButtonClicked> roomChoice;
@@ -193,7 +195,8 @@ public class Quest3Script : MonoBehaviour
             wronglyAssignedRooms.Add("Ruheraum");
         }
         if(wronglyAssignedRooms.Count==0){
-            SceneManager.LoadScene("Quest4");
+            //SceneManager.LoadScene("Quest4");
+            mouseWriteCutscene.Play();
         }else{
             string output;
             if(wronglyAssignedRooms.Count==1){
