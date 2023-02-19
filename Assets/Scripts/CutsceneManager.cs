@@ -20,17 +20,38 @@ public class CutsceneManager : MonoBehaviour
         instance = this;
     }
 
-    public static void StartCutscene()
+    public static void StartCutscene(bool fadeout = true)
     {
-        instance.Begin();
+        instance.Begin(fadeout);
     }
 
-    void Begin()
+    void Begin(bool fadeout)
     {
         if (frames.Length == 0) return;
         display.gameObject.GetComponentInParent<Canvas>().sortingOrder = 7;
         display.gameObject.SetActive(true);
-        StartCoroutine(ShowFrame(0));
+        if (fadeout)
+        {
+            StartCoroutine(PrepareCutscene());
+        } else
+        {
+            StartCoroutine(ShowFrame(0));
+        }
+    }
+
+    IEnumerator PrepareCutscene()
+    {
+        //Fade out
+        while (true)
+        {
+            display.color = Color.Lerp(display.color, new Color(0, 0, 0, 1), Time.deltaTime * (fadeSpeed*2));
+            if (display.color.a >= .9f)
+            {
+                StartCoroutine(ShowFrame(0));
+                break;
+            }
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
     }
 
     IEnumerator ShowFrame(int index)

@@ -15,6 +15,6 @@ public class MouseWriteTimeline : MonoBehaviour
 
     void onEndReached(PlayableDirector d)
     {
-        CutsceneManager.StartCutscene();
+        CutsceneManager.StartCutscene(false);
     }
 }

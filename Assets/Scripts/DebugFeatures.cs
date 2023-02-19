@@ -31,6 +31,11 @@ public class DebugFeatures : MonoBehaviour
             LoadScene(1);
             return;
         }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            CutsceneManager.StartCutscene();
+            return;
+        }
     }
 
     void LoadScene(int offset)
