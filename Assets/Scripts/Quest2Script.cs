@@ -17,7 +17,7 @@ public class Quest2Script : MonoBehaviour
     private GameObject[] cubeFolders;
     private GameObject[] stickyNodes;
     private int count;
-    [SerializeField] int currentLevel;
+    private int currentLevel;
     [SerializeField] int totalElements;
     [SerializeField] TextMeshProUGUI textField1;
     [SerializeField] TextMeshProUGUI textField2;
@@ -29,6 +29,8 @@ public class Quest2Script : MonoBehaviour
     {   
         textField1.text="0 / "+totalElements;
         textField2.text=textField1.text;
+
+        currentLevel=2;
 
         isActive=false;
         cubeFolders = new GameObject[totalElements];

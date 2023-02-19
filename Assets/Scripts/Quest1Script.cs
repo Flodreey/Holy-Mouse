@@ -19,7 +19,7 @@ public class Quest1Script : MonoBehaviour
     private int count;
     [SerializeField] TextMeshProUGUI textField1;
     [SerializeField] TextMeshProUGUI textField2;
-    [SerializeField] int currentLevel;
+    private int currentLevel;
     [SerializeField] int totalElements;
 
     [SerializeField] GameObject pauseMenu;
@@ -29,6 +29,8 @@ public class Quest1Script : MonoBehaviour
     {
         textField1.text = "0 / " + totalElements;
         textField2.text = textField1.text;
+
+        currentLevel = 1;
 
         isActive =false;
         cubeFolders = new GameObject[totalElements];

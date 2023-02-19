@@ -202,16 +202,16 @@ public class Quest3Script : MonoBehaviour
     {
         List<string> wronglyAssignedRooms = new List<string>();
         if(roomChoice[Rooms.AltarRoom]!=RoomButtonClicked.Third){
-            wronglyAssignedRooms.Add("Spielbereich");
+            wronglyAssignedRooms.Add("Altarraum");
         }
         if(roomChoice[Rooms.Entrance]!=RoomButtonClicked.First){
-            wronglyAssignedRooms.Add("Garderobe");
+            wronglyAssignedRooms.Add("Eingangsbereich");
         }
         if(roomChoice[Rooms.Orgelempore]!=RoomButtonClicked.Second){
-            wronglyAssignedRooms.Add("Buero");
+            wronglyAssignedRooms.Add("Orgelempore");
         }
         if(roomChoice[Rooms.QuietRoom]!=RoomButtonClicked.Third){
-            wronglyAssignedRooms.Add("Ruheraum");
+            wronglyAssignedRooms.Add("Nebenraum Orgelempore");
         }
         if(wronglyAssignedRooms.Count==0){
             //SceneManager.LoadScene("Quest4");
@@ -220,10 +220,10 @@ public class Quest3Script : MonoBehaviour
             string output;
             if(wronglyAssignedRooms.Count==1){
                 //output="Du hast leider nicht alle Räume korrekt zugewiesen. Folgender Raum konnte nicht korrekt zugewiesen werden: "+wronglyAssignedRooms[0];
-                output="Folgender Raum wurde leider nicht korrekt zugewiesen werden: "+wronglyAssignedRooms[0];
+                output="Folgendem Raum wurde leider die falsche Rolle zugewiesen: "+wronglyAssignedRooms[0];
                 textField1.text = "3 / " + "4";
             }else{
-                output="Folgende Raeume wurden leider nicht korrekt zugewiesen werden: ";
+                output="Folgenden Raeumen wurden leider die falsche Rolle zugewiesen: ";
                 for(int i=0; i<wronglyAssignedRooms.Count-1; i++){
                     output+=wronglyAssignedRooms[i]+", "; 
                 }
