@@ -64,6 +64,11 @@ public class Quest4Script : MonoBehaviour
                     ladderEntranceMaterial.SetActive(false);
                     ladderEntranceMaterial.transform.parent.gameObject.SetActive(false);
                     ladderEntrance.SetActive(true);
+                    if (!altarEntranceMaterial.activeSelf) {
+                        GameObject g = GameObject.Find("EndQuestMessage");
+                        EndQuestMessageScript endQuestMessageScript = g.GetComponent<EndQuestMessageScript>();
+                        endQuestMessageScript.ShowMessage();
+                    }
                 }
             }else{
                 if(ladderEntrance.activeSelf && ladderEntrance.GetComponent<BoxCollider>().bounds.Contains(playerVisual.transform.position)){
@@ -80,6 +85,11 @@ public class Quest4Script : MonoBehaviour
                     altarEntranceMaterial.SetActive(false);
                     altarEntranceMaterial.transform.parent.gameObject.SetActive(false);
                     altarEntrance.SetActive(true);
+                    if (!ladderEntranceMaterial.activeSelf) {
+                        GameObject g = GameObject.Find("EndQuestMessage");
+                        EndQuestMessageScript endQuestMessageScript = g.GetComponent<EndQuestMessageScript>();
+                        endQuestMessageScript.ShowMessage();
+                    }
                 }
             }else{
                 if(altarEntrance.activeSelf && altarEntrance.GetComponent<BoxCollider>().bounds.Contains(playerVisual.transform.position)){
@@ -104,9 +114,6 @@ public class Quest4Script : MonoBehaviour
                 isActive=true;
             }
         }
-    }
-    private void checkForInteraction(){
-
     }
     private void OnTriggerEnter(Collider other)
     {
