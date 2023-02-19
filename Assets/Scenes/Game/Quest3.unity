@@ -8163,11 +8163,11 @@ MonoBehaviour:
 
     Er
     ist raeumlich von den anderen Zimmern getrennt. Dadurch ist es hier verhaeltnissmaessig
-    leise. Hier wuerde man wenig von der alltaeglichen Lautstaerke im Kindergarten
+    leise. Hier wuerde man wenig von den alltaeglichen Geraeuschen im Kindergarten
     mitbekommen.
 
 
-    Was sollte in diesen Raum deiner Meinung nach kommen?
+    Wie sollte dieser Raum deiner Meinung nach genutzt werden?
 
 
 '
@@ -14648,7 +14648,7 @@ PrefabInstance:
     - target: {fileID: 5075771556105495321, guid: fd7d2ecb7d6c74d8b8afaef5cf66d2a4, type: 3}
       propertyPath: m_text
       value: Super! Du hast die Quest erfolgreich gemeistert. Gelange jetzt zum Schreibtisch,
-        um deine Raeume zu realisieren und in die naechste Quest zu gelangen.
+        um deine Raeume zu einzuzeichnen undzur naechsten Quest zu gelangen.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd7d2ecb7d6c74d8b8afaef5cf66d2a4, type: 3}
@@ -20847,11 +20847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2355366405752522279, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000084937035
+      value: -0.0000000084937035
       objectReference: {fileID: 0}
     - target: {fileID: 2355366405752522279, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000013681737
+      value: 0.0000000013681737
       objectReference: {fileID: 0}
     - target: {fileID: 2630973954044068763, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_XAxis.m_MaxSpeed
@@ -20908,13 +20908,14 @@ PrefabInstance:
     - target: {fileID: 5483408715575996046, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_text
       value: "Die weitere Nutzung der Raeume soll nun festgelegt werden. Der Architekt
-        ist sich bei einigen Raeumen unsicher, wofuer diese sich am besten eigenen.\n\nFolgende
-        Raeume werden noch benoetigt:\n\n1. In der Naehe vom Eingang soll eine Garderobe
-        entstehen\n2. Ein leiser Raum wird fuer einen Ruheraum benoetigt.\n3. Es
-        wird ein Buero ben\xF6tigt, von welchem man einen guten Ueberblick ueber
-        die anderen Raeume hat.\n4. Fuer die Kinder soll zudem ein grosser Spielbereich
-        entstehen.\n\nWenn du alle Raeume zugeordnet hast, zeichne sie auf dem Raumplan
-        des Architekten ein. Diesen findest du im alten Altarraum.\n \u200B"
+        ist sich bei einigen  unsicher, wofuer sie sich am besten eigenen.\n\nGesucht
+        werden noch Raeume mit folgenden Funktionen:\n\n1. In der Naehe vom Eingang
+        soll eine Garderobe entstehen.\n2. Ein stiller Ort wird fuer einen Ruheraum
+        benoetigt.\n3. Es wird ein Buero gesucht, von dem aus man einen guten Ueberblick
+        ueber den Rest des Geb\xE4udes hat.\n4. Fuer die Kinder soll zudem ein grosser
+        Spielbereich entstehen.\n\nWenn du alle Raeume zugeordnet hast, zeichne sie
+        auf dem Raumplan des Architekten ein. Diesen findest du im ehemaligen Altarraum.\n
+        \u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 5483408715575996046, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_margin.z
@@ -20990,15 +20991,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848012511673649353, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2047471
+      value: 0.20474713
       objectReference: {fileID: 0}
     - target: {fileID: 6848012511673649353, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000029170959
+      value: -1.6258276e-15
       objectReference: {fileID: 0}
     - target: {fileID: 6848012511673649353, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000061019394
+      value: 5.666373e-16
       objectReference: {fileID: 0}
     - target: {fileID: 8415444102664044241, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
       propertyPath: m_IsActive

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2113297470}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.000012901513, g: 0.000016669457, b: 0.00002028978, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22461,11 +22461,11 @@ PrefabInstance:
       propertyPath: m_text
       value: "Der Umbau der Kirche steht kurz bevor. Durch deine Hilfe konnte alles
         rechtzeitig geplant werden und die Kirche bleibt bestehen.\n\nJetzt musst
-        du nur noch dein Maeuseloch verstecken, damit es keiner beim Umbau der Raeume
+        du nur noch dein Mauseloch verstecken, damit es keiner beim Umbau der Raeume
         findet. \n\nSuche dafuer die Kirche nach Gegenstaenden ab, die nuetzlich
-        sein koennen, um deine beiden Eingaenge zu verschliessen. \n\nWenn du die
-        Gegenstaende eingesammelt hast, bring sie zurueck zum Maeuseloch. Wenn du
-        damit fertig bist, hast du dir eine Auszeit in deinem Maeusebett verdient.
+        sein koennten, um deine beiden Eingaenge zu verschliessen. \n\nWenn du die
+        Gegenstaende eingesammelt hast, bring sie zurueck zum Mauseloch. Wenn du
+        damit fertig bist, hast du dir eine Auszeit in deinem Mausebett verdient.
         \n\n\n\n\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5483408716433161501, guid: 49ddd72b8c987504cab3ae7ae61fc044, type: 3}
