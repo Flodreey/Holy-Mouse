@@ -88,7 +88,7 @@ public class Quest4Script : MonoBehaviour
                     if (!ladderEntranceMaterial.activeSelf) {
                         GameObject g = GameObject.Find("QuestMessagePrefab");
                         QuestMessageScript endQuestMessageScript = g.GetComponent<QuestMessageScript>();
-                        endQuestMessageScript.ShowMessage();
+                        endQuestMessageScript.ShowMessage("Du hast beide Gegenstaende gefunden! Platziere sie nun an den Eingaengen deines Verstecks. Danach kannst du dich beruhigt schlafen legen!");
                     }
                 }
             }else{
