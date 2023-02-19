@@ -36,12 +36,15 @@ public class Quest3Script : MonoBehaviour
     private Button[] buttons;
     private Dictionary<Rooms,RoomButtonClicked> roomChoice;
     private GameObject[] cubes;
+    [SerializeField] TextMeshProUGUI textField1;
     // Start is called before the first frame update
     void Start()
     {   
         isActive=false;
         currentLevel=3;
         inRoom=false;
+
+        textField1.text = "0 / " + "4";
 
         rooms=new Dictionary<string,GameObject>();
         GameObject roomsFolder= GameObject.Find("Rooms");
@@ -216,15 +219,20 @@ public class Quest3Script : MonoBehaviour
         }else{
             string output;
             if(wronglyAssignedRooms.Count==1){
-                output="Du hast leider nicht alle Räume korrekt zugewiesen. Folgender Raum konnte nicht korrekt zugewiesen werden: "+wronglyAssignedRooms[0];
+                //output="Du hast leider nicht alle Räume korrekt zugewiesen. Folgender Raum konnte nicht korrekt zugewiesen werden: "+wronglyAssignedRooms[0];
+                output="Folgender Raum wurde leider nicht korrekt zugewiesen werden: "+wronglyAssignedRooms[0];
+                textField1.text = "3 / " + "4";
             }else{
-                output="Du hast leider nicht alle Räume korrekt zugewiesen. Folgende Räume konnten nicht korrekt zugewiesen werden: ";
+                output="Folgende Raeume wurden leider nicht korrekt zugewiesen werden: ";
                 for(int i=0; i<wronglyAssignedRooms.Count-1; i++){
-                    output+=wronglyAssignedRooms[i]+", ";
+                    output+=wronglyAssignedRooms[i]+", "; 
                 }
+                textField1.text = (4-wronglyAssignedRooms.Count)+" / " + "4";
                 output+=wronglyAssignedRooms[wronglyAssignedRooms.Count-1];
             }
-            Debug.Log(output);
+            GameObject g = GameObject.Find("QuestMessagePrefab");
+            QuestMessageScript endQuestMessageScript = g.GetComponent<QuestMessageScript>();
+            endQuestMessageScript.ShowMessage(output);
         }
     }
     void openPauseMenu(){
