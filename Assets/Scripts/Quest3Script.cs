@@ -27,6 +27,7 @@ public class Quest3Script : MonoBehaviour
 
     private Rooms currentRoom;
     private bool inRoom;
+    [SerializeField] GameObject QuestChoosingMenu;
     [SerializeField] TextMeshProUGUI roomDescription;
     [SerializeField] TextMeshProUGUI roomName;
     [SerializeField] GameObject roomChoiceButtons;
@@ -34,6 +35,7 @@ public class Quest3Script : MonoBehaviour
     private Dictionary<Rooms,Dictionary<string, string>> quest3Dictionary;
     private Button[] buttons;
     private Dictionary<Rooms,RoomButtonClicked> roomChoice;
+    private GameObject[] cubes;
     // Start is called before the first frame update
     void Start()
     {   
@@ -62,6 +64,12 @@ public class Quest3Script : MonoBehaviour
         buttons[0].onClick.AddListener(Button1Clicked);
         buttons[1].onClick.AddListener(Button2Clicked);
         buttons[2].onClick.AddListener(Button3Clicked);
+
+        cubes=new GameObject[4];
+        cubes[0] = GameObject.Find("ButtonEntrance");
+        cubes[1] = GameObject.Find("ButtonOrgelempore");
+        cubes[2] = GameObject.Find("ButtonRuheraum");
+        cubes[3] = GameObject.Find("ButtonAltarraum");
 
         // Create a new GameState object with the current game data
         GameState gameState = new GameState(currentLevel);
@@ -127,6 +135,14 @@ public class Quest3Script : MonoBehaviour
                 questPanel.SetActive(true);
                 isActive=true;
             }
+        }
+        if(Input.GetButtonDown("Interact")){
+            checkForInteraction();
+        }
+    }
+    private void checkForInteraction(){
+        if(inRoom==true){
+            QuestChoosingMenu.SetActive(!QuestChoosingMenu.activeSelf);
         }
     }
     private void OnTriggerEnter(Collider other)

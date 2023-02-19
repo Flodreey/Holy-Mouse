@@ -39,13 +39,13 @@ public class Quest2Script : MonoBehaviour
             cubeFolders[i-1] = GameObject.Find(name+i);
         }
         //Assign StickyNodes GameObjects
-        stickyNodes[0] = GameObject.Find("DeleteThisObjectWhenNodesAreImported");
-        //stickyNodes[0].SetActive(false);
-        stickyNodes[1] = GameObject.Find("DeleteThisObjectWhenNodesAreImported");
-        //stickyNodes[1].SetActive(false);
-        stickyNodes[2] = GameObject.Find("DeleteThisObjectWhenNodesAreImported");
-        //stickyNodes[2].SetActive(false);
-        stickyNodes[3] = GameObject.Find("DeleteThisObjectWhenNodesAreImported");
+        stickyNodes[0] = GameObject.Find("BodenStickyNotes");
+        stickyNodes[0].SetActive(false);
+        stickyNodes[1] = GameObject.Find("FensterStickyNotes");
+        stickyNodes[1].SetActive(false);
+        stickyNodes[2] = GameObject.Find("GeländerStickyNotes");
+        stickyNodes[2].SetActive(false);
+        stickyNodes[3] = GameObject.Find("AltarTreppeStickyNotes");
         stickyNodes[3].SetActive(false);
 
         // Create a new GameState object with the current game data

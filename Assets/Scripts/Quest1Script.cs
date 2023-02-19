@@ -39,11 +39,11 @@ public class Quest1Script : MonoBehaviour
             cubeFolders[i-1] = GameObject.Find(name+i);
         }
         //Assign StickyNodes GameObjects
-        stickyNodes[0] = GameObject.Find("BänkeNordStickyNotes");
+        stickyNodes[0] = GameObject.Find("BücherregalStickyNotes");
         stickyNodes[1] = GameObject.Find("AltarStickyNotes");
         stickyNodes[2] = GameObject.Find("LautsprecherStickyNotes");
-        stickyNodes[3] = GameObject.Find("BänkeSüdStickyNotes");
-        stickyNodes[4] = GameObject.Find("BänkeNordStickyNotes");
+        stickyNodes[3] = GameObject.Find("BänkeNordseiteStickyNotes");
+        stickyNodes[4] = GameObject.Find("BänkeSüdseiteStickyNotes");
         if(stickyNodes[4]==null){
             Debug.Log("Hier passieren ganz wilde sachen");
         }
