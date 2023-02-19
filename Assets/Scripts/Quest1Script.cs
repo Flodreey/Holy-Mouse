@@ -132,8 +132,8 @@ public class Quest1Script : MonoBehaviour
         }
 
         if (count == totalElements) {
-            GameObject g = GameObject.Find("EndQuestMessage");
-            EndQuestMessageScript endQuestMessageScript = g.GetComponent<EndQuestMessageScript>();
+            GameObject g = GameObject.Find("QuestMessagePrefab");
+            QuestMessageScript endQuestMessageScript = g.GetComponent<QuestMessageScript>();
             endQuestMessageScript.ShowMessage();
         }
     }

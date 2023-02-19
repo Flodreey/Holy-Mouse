@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
-public class EndQuestMessageScript : MonoBehaviour
+public class QuestMessageScript : MonoBehaviour
 {
     [SerializeField] GameObject display;
     [SerializeField] TextMeshProUGUI textField;
@@ -22,7 +21,7 @@ public class EndQuestMessageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ShowMessage()

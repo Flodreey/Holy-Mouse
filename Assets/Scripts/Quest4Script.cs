@@ -65,8 +65,8 @@ public class Quest4Script : MonoBehaviour
                     ladderEntranceMaterial.transform.parent.gameObject.SetActive(false);
                     ladderEntrance.SetActive(true);
                     if (!altarEntranceMaterial.activeSelf) {
-                        GameObject g = GameObject.Find("EndQuestMessage");
-                        EndQuestMessageScript endQuestMessageScript = g.GetComponent<EndQuestMessageScript>();
+                        GameObject g = GameObject.Find("QuestMessagePrefab");
+                        QuestMessageScript endQuestMessageScript = g.GetComponent<QuestMessageScript>();
                         endQuestMessageScript.ShowMessage();
                     }
                 }
@@ -86,8 +86,8 @@ public class Quest4Script : MonoBehaviour
                     altarEntranceMaterial.transform.parent.gameObject.SetActive(false);
                     altarEntrance.SetActive(true);
                     if (!ladderEntranceMaterial.activeSelf) {
-                        GameObject g = GameObject.Find("EndQuestMessage");
-                        EndQuestMessageScript endQuestMessageScript = g.GetComponent<EndQuestMessageScript>();
+                        GameObject g = GameObject.Find("QuestMessagePrefab");
+                        QuestMessageScript endQuestMessageScript = g.GetComponent<QuestMessageScript>();
                         endQuestMessageScript.ShowMessage();
                     }
                 }

@@ -128,13 +128,9 @@ public class Quest2Script : MonoBehaviour
             }
         }
 
-        Debug.Log("count: " + count);
-        Debug.Log("total elements: " + totalElements);
-
         if (count == totalElements) {
-            Debug.Log("All elements found");
-            GameObject g = GameObject.Find("EndQuestMessage");
-            EndQuestMessageScript endQuestMessageScript = g.GetComponent<EndQuestMessageScript>();
+            GameObject g = GameObject.Find("QuestMessagePrefab");
+            QuestMessageScript endQuestMessageScript = g.GetComponent<QuestMessageScript>();
             endQuestMessageScript.ShowMessage();
         }
     }
