@@ -639,7 +639,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5154041903586127351}
-  m_LocalRotation: {x: 0.15903096, y: 0.0000000084937035, z: -0.0000000013681737, w: 0.98727363}
+  m_LocalRotation: {x: 0.15903096, y: -0.0000000084937035, z: 0.0000000013681737, w: 0.98727363}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1406,6 +1406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseGameMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 6433248296149628356, guid: c73fd8c84a1ff4d92b1e04cebbb16f0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6433248296149628366, guid: c73fd8c84a1ff4d92b1e04cebbb16f0c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1840,6 +1844,14 @@ PrefabInstance:
     - target: {fileID: 3236001852475793858, guid: e77cfc1161764463686a7d2bef7c4eb6, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236001852475793859, guid: e77cfc1161764463686a7d2bef7c4eb6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236001852475793859, guid: e77cfc1161764463686a7d2bef7c4eb6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.999939
       objectReference: {fileID: 0}
     - target: {fileID: 3236001852837494728, guid: e77cfc1161764463686a7d2bef7c4eb6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

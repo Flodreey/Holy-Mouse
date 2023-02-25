@@ -13,7 +13,7 @@ public class Tether : MonoBehaviour
     private LineRenderer line;
     private Vector3[] points;
     private Vector3 start, end;
-    private float dropDistance = .01f;
+    private float dropDistance = .05f;
     
     void Start()
     {
