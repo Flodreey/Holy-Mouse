@@ -90,18 +90,21 @@ public class Quest3Script : MonoBehaviour
         if(inRoom==true){
             roomChoice[currentRoom] = RoomButtonClicked.First;
             colorizeButtons(0);
+            checkAllRoomsAssigned();
         }
     }
     void Button2Clicked(){
         if(inRoom==true){
             roomChoice[currentRoom] = RoomButtonClicked.Second;
             colorizeButtons(1);
+            checkAllRoomsAssigned();
         }
     }
     void Button3Clicked(){
         if(inRoom==true){
             roomChoice[currentRoom] = RoomButtonClicked.Third;
             colorizeButtons(2);
+            checkAllRoomsAssigned();
         }
     }
     void colorizeButtons(int whichOne){
@@ -122,6 +125,21 @@ public class Quest3Script : MonoBehaviour
             Color color = new Color32(255, 255, 255, 255);
             textField.color = color;
         }
+    }
+    // if all rooms are assigned tell player to go to the plan on the table
+    void checkAllRoomsAssigned()
+    {
+        foreach (Rooms room in Enum.GetValues(typeof(Rooms)))
+        {
+            if (roomChoice[room] == RoomButtonClicked.None)
+            {
+                return;
+            }
+        }
+
+        GameObject g = GameObject.Find("QuestMessagePrefab");
+        QuestMessageScript endQuestMessageScript = g.GetComponent<QuestMessageScript>();
+        endQuestMessageScript.ShowMessage("Du hast alle Raeume zugeordnet! Finde jetzt den Raumplan des Architekten und zeichne deine Ideen ein.");
     }
     // Update is called once per frame
     void Update()

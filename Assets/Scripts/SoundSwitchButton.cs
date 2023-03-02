@@ -42,6 +42,9 @@ public class SoundSwitchButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (BGMusic.instance == null)
+            return;
+
         if (BGMusic.instance.GetComponent<AudioSource>().isPlaying)
         {
             buttonImage.sprite = soundActivated;

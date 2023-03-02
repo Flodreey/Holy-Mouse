@@ -40,6 +40,7 @@ public class MainMenu : MonoBehaviour
             Options.loadMouseSensitivity(gameState.getMouseSensitivity());
 
             // Load the saved game state
+            Debug.Log("Level: " + gameState.getLevel());
             if(gameState.getLevel()<=4 && gameState.getLevel()>=1){
                 SceneManager.LoadScene("Quest"+gameState.getLevel());
             }else{
@@ -54,7 +55,6 @@ public class MainMenu : MonoBehaviour
     }
     public void QuitGame(){
         Debug.Log("QUIT!");
-        File.Delete("savedata.dat");
         Application.Quit();
     }
 }
