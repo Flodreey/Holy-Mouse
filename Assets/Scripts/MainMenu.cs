@@ -4,9 +4,28 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] Button resumeButtonActivated;
+    [SerializeField] Button resumeButtonDeactivated;
+
+    private void Update()
+    {
+        
+        if (File.Exists("savedata.dat"))
+        {
+            resumeButtonActivated.gameObject.SetActive(true);
+            resumeButtonDeactivated.gameObject.SetActive(false);
+        }
+        else
+        {
+            resumeButtonActivated.gameObject.SetActive(false);
+            resumeButtonDeactivated.gameObject.SetActive(true);
+        }
+    }
+
     public void PlayGame(){
         if (File.Exists("savedata.dat"))
         {
@@ -21,17 +40,12 @@ public class MainMenu : MonoBehaviour
             Options.loadMouseSensitivity(gameState.getMouseSensitivity());
 
             // Load the saved game state
-            if(gameState.getLevel()<=3&&gameState.getLevel()>=1){
+            if(gameState.getLevel()<=4 && gameState.getLevel()>=1){
                 SceneManager.LoadScene("Quest"+gameState.getLevel());
             }else{
                 File.Delete("savedata.dat");
                 SceneManager.LoadScene("Quest1");
             }
-        }
-        else
-        {
-            // Start a new game
-            SceneManager.LoadScene("Quest1");
         }
     }
     public void NewGame(){
@@ -40,6 +54,7 @@ public class MainMenu : MonoBehaviour
     }
     public void QuitGame(){
         Debug.Log("QUIT!");
+        File.Delete("savedata.dat");
         Application.Quit();
     }
 }

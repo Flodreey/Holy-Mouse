@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class CutsceneManager : MonoBehaviour
 {
@@ -87,6 +88,10 @@ public class CutsceneManager : MonoBehaviour
             StartCoroutine(ShowFrame(index + 1));
         } else
         {
+            if (nextScene == "MainMenu")
+            {
+                File.Delete("savedata.dat");
+            }
             SceneManager.LoadScene(nextScene);
         }
     }
