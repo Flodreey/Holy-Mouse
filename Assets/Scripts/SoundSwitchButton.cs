@@ -45,10 +45,12 @@ public class SoundSwitchButton : MonoBehaviour
         if (BGMusic.instance.GetComponent<AudioSource>().isPlaying)
         {
             buttonImage.sprite = soundActivated;
+            sound = true;
         }
         else
         {
             buttonImage.sprite = soundDeactivated;
+            sound = false;
         }
     }
 }
