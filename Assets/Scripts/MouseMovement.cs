@@ -184,23 +184,24 @@ public class MouseMovement : MonoBehaviour
             }
 
             // Visual stuff
-            playerVisual.transform.rotation = new Quaternion();
-            playerVisual.transform.LookAt(transform.position + dir * dirSwitch);
+            Transform targetTransform = playerVisual.transform;
+            targetTransform.rotation = new Quaternion();
+            targetTransform.LookAt(transform.position + dir * dirSwitch);
 
             Vector3 mouseDownAdjusted = tether.mouseDown;
-            float scalar = Vector3.Dot(playerVisual.transform.forward, mouseDownAdjusted);
-            mouseDownAdjusted -= playerVisual.transform.forward * scalar;
+            float scalar = Vector3.Dot(targetTransform.forward, mouseDownAdjusted);
+            mouseDownAdjusted -= targetTransform.forward * scalar;
 
-            float downDiff = Vector3.Dot(playerVisual.transform.right, mouseDownAdjusted.normalized);
-            playerVisual.transform.Rotate(playerVisual.transform.forward, downDiff * 90f, Space.World);
+            float downDiff = Vector3.Dot(targetTransform.right, mouseDownAdjusted.normalized);
+            targetTransform.Rotate(targetTransform.forward, downDiff * 90f, Space.World);
 
             // Stupid edge case
-            float upDiff = Vector3.Dot(playerVisual.transform.up, mouseDownAdjusted);
+            float upDiff = Vector3.Dot(targetTransform.up, mouseDownAdjusted);
             if (upDiff > 0)
             {
-                playerVisual.transform.Rotate(playerVisual.transform.forward, 180f, Space.World);
+                targetTransform.Rotate(targetTransform.forward, 180f, Space.World);
             }
-            visualRotation = playerVisual.transform.rotation;
+            visualRotation = Quaternion.Lerp(visualRotation, targetTransform.rotation, Time.deltaTime * 10f);
         }
 
         // animation
