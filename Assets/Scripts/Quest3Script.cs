@@ -37,12 +37,15 @@ public class Quest3Script : MonoBehaviour
     private Dictionary<Rooms,RoomButtonClicked> roomChoice;
     private GameObject[] cubes;
     [SerializeField] TextMeshProUGUI textField1;
+
+    private bool messageDisplayed;
     // Start is called before the first frame update
     void Start()
     {   
         isActive=false;
         currentLevel=3;
         inRoom=false;
+        messageDisplayed=false;
 
         textField1.text = "0 / " + "4";
 
@@ -83,8 +86,11 @@ public class Quest3Script : MonoBehaviour
         formatter.Serialize(stream, gameState);
         byte[] data = stream.ToArray();
 
+        // Get the file path for the savedata file in the persistent data directory
+        string filePath = Path.Combine(Application.persistentDataPath, "savedata.dat");
+
         // Save the byte array to a file
-        File.WriteAllBytes("savedata.dat", data);
+        File.WriteAllBytes(filePath, data);
     }
     void Button1Clicked(){
         if(inRoom==true){
@@ -129,17 +135,21 @@ public class Quest3Script : MonoBehaviour
     // if all rooms are assigned tell player to go to the plan on the table
     void checkAllRoomsAssigned()
     {
-        foreach (Rooms room in Enum.GetValues(typeof(Rooms)))
-        {
-            if (roomChoice[room] == RoomButtonClicked.None)
+        if (messageDisplayed) {
+            return;
+        }else{
+            foreach (Rooms room in Enum.GetValues(typeof(Rooms)))
             {
-                return;
+                if (roomChoice[room] == RoomButtonClicked.None)
+                {
+                    return;
+                }
             }
+            messageDisplayed=true;
+            GameObject g = GameObject.Find("QuestMessagePrefab");
+            QuestMessageScript endQuestMessageScript = g.GetComponent<QuestMessageScript>();
+            endQuestMessageScript.ShowMessage("Du hast alle Raeume zugeordnet! Finde jetzt den Raumplan des Architekten und zeichne deine Ideen ein.");
         }
-
-        GameObject g = GameObject.Find("QuestMessagePrefab");
-        QuestMessageScript endQuestMessageScript = g.GetComponent<QuestMessageScript>();
-        endQuestMessageScript.ShowMessage("Du hast alle Raeume zugeordnet! Finde jetzt den Raumplan des Architekten und zeichne deine Ideen ein.");
     }
     // Update is called once per frame
     void Update()

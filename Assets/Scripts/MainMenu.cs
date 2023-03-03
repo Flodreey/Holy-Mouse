@@ -29,8 +29,10 @@ public class MainMenu : MonoBehaviour
     public void PlayGame(){
         if (File.Exists("savedata.dat"))
         {
+            // Get the file path for the savedata file in the persistent data directory
+            string filePath = Path.Combine(Application.persistentDataPath, "savedata.dat");
             // Load the saved data from the file
-            byte[] data = File.ReadAllBytes("savedata.dat");
+            byte[] data = File.ReadAllBytes(filePath);
 
             // Deserialize the GameState object from the byte array
             BinaryFormatter formatter = new BinaryFormatter();

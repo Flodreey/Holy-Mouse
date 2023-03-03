@@ -50,8 +50,11 @@ public class Quest4Script : MonoBehaviour
         formatter.Serialize(stream, gameState);
         byte[] data = stream.ToArray();
 
+        // Get the file path for the savedata file in the persistent data directory
+        string filePath = Path.Combine(Application.persistentDataPath, "savedata.dat");
+
         // Save the byte array to a file
-        File.WriteAllBytes("savedata.dat", data);
+        File.WriteAllBytes(filePath, data);
     }
 
     // Update is called once per frame
