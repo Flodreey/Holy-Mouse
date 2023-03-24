@@ -4,11 +4,12 @@
 
 
   <img width="400" src="https://user-images.githubusercontent.com/80370750/227291168-a22cd4c6-ac85-42c1-a778-513ee73bf21f.png"/>
+  
+  The Unity game **Holy Mouse** is a project developed by four german students at the **Technical University of Munich**. 
+
+  ![Logo_of_the_Technical_University_of_Munich svg](https://user-images.githubusercontent.com/80370750/227303868-d01845c1-5182-4740-82b0-3a4446fde59c.png)
+
 </div>
-
-The Unity game **Holy Mouse** is a project developed by four german students at the **Technical University of Munich**. 
-![Logo_of_the_Technical_University_of_Munich svg](https://user-images.githubusercontent.com/80370750/227303868-d01845c1-5182-4740-82b0-3a4446fde59c.png)
-
 
 ## Description
 The player finds himself in the paws of a mouse living in a church, listening to a conversation between an architect and the mayor. The mayor 
@@ -35,6 +36,11 @@ plan to draw in its suggestions.
 The construction work has started and the mouse has to find a way to hide her tiny living room so that it won't be destroyed during the construction. 
 So now it's her task to find two objects in the church that she can use to hide her two hiding entrances. These items are again highlighted with the 
 familiar particle effect.
+
+### Model of church "Bethlehemskirche" in Munich
+<div>
+  <img width="700" src="https://user-images.githubusercontent.com/80370750/227520496-8c98d818-7852-4c6d-8d6a-d708f1060941.jpg"/>
+</div>
 
 ## Controls
 | Key | Function |
